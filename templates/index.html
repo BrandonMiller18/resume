@@ -4,12 +4,12 @@
 {% block content %}
 
 
-<div class="page-header typewriter">
+<div class="page-header">
 <!-- If fname cookie is set, then we will greet that user by their name -->
 	{% if not fn %}
-	<h1>Welcome.</h1>
+	<h1 class="page-title">Welcome.</h1>
 	{% else %}
-	<h1>Welcome back, {{fn}}!</h1>
+	<h1 class="page-title">Welcome back, {{fn}}!</h1>
 	{% endif %}
 </div>
 

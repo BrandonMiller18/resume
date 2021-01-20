@@ -309,20 +309,6 @@ footer.container {
 }
 /* HOME PAGE CSS */
 
-.typewriter h1 {
-	font-family: 'Courier New', monospace;
-	grid-column: 6 / span 2; /* Places text in center of screen */ 
-	text-align: center;
-	overflow: hidden; /* Ensures the content is not revealed until the animation */
-	border-right: .15em solid; /* The typwriter cursor */
-	white-space: nowrap; /* Keeps the content on a single line */
-	margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-	letter-spacing: .15em; /* Adjust as needed */
-	animation: 
-		typing 1.25s steps(40, end),
-		blink-caret .75s step-end infinite;
-}
-
 div.lang__callout {
 	grid-column: span 4;
 }
@@ -965,6 +951,11 @@ img.headshot {
 
 	.section.references {
 		margin: 0 10%;
+	}
+
+	.project {
+		/*width of project tiles on mobile*/
+		width: auto;
 	}
 
 	/*MOBILE ABOUT*/

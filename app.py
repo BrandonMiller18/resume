@@ -123,6 +123,9 @@ def reference():
 
 		# show thank you message
 		flash("Thank you for your feedback!", "success")
+
+	if session['ref']:
+		flash("Thank you for your feedback!", "success")
 			
 
 	return render_template("references.html", references=references.query.all())
@@ -184,6 +187,8 @@ def thank_you():
 	if "fname" in session:
 		fname = session["fname"]
 		session['contact'] = True
+		flash("Success! Email sent.", "success")
+
 		return render_template("thankyou.html", fname=fname)
 	else:
 		return "error"
