@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Brandon Miller | Contact Me{% endblock %}
+{% set active_page = "contact" %}
+{% block content %}
+	
+	<div class="page-header">
+			<h1 class="full-width center">Contact Brandon!</h1>
+			<p class="full-width center">Please fill out the form below and I will get back to you as soon as I can.</p>
+		</div>
+	<div class="container narrow pad">
+<!-- 		<div class="error">
+			<p>All fields are required.</p>
+		</div> -->
+		<form class="form full-width section" name="contactme" action="" method="POST" accept-charset="utf-8">
+			<div class="half-width fname">
+				<label for="fname">First name: </label>
+				<input id="fname" type="text" name="fname">
+			</div>
+			<div class="half-width lname">
+				<label for="lname">Last name: </label>
+				<input id="lname" type="text" name="lname">
+			</div>
+			<div class="half-width fname">
+				<label for="email">Email: </label>
+				<input id="email" type="text" name="email">
+			</div>
+			<div class="half-width lname">
+				<label for="company">Company: </label>
+				<input id="company" type="text" name="company">
+			</div>
+			<div class="full-width">
+				<label for="sbj">Subject: </label>
+				<input id="sbj" type="text" name="sbj">
+			</div>
+			<div class="full-width">
+				<label for="msg">Message: </label>
+				<textarea id="msg" class="msg" type="text" name="msg" value=""></textarea>
+			</div>
+			<div class="full-width center">
+				<input class="btn-form" type="submit" name="submit" value="Submit">
+			</div>
+		</form>
+
+		
+	
+	</div>
+
+{% endblock %}

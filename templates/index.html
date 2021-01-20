@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% block title %}Brandon Miller | Home Page{% endblock %}
+{% set active_page = "index" %}
+{% block content %}
+
+
+<div class="page-header typewriter">
+<!-- If fname cookie is set, then we will greet that user by their name -->
+	{% if not fn %}
+	<h1>Welcome.</h1>
+	{% else %}
+	<h1>Welcome back, {{fn}}!</h1>
+	{% endif %}
+</div>
+
+<div class="container">
+
+	<div class="section narrow pad">
+		<div class="full-width pad intro">
+			<p>Welcome to what is probably the millionth iteration of my resume website. If you are reading this, it means I have finally gotten this bad boy to a place where I am happy enough to launch it (I've only owned the domain for over a year...)! Jokes aside, I started this project with one goal: LEARN. Spoiler alert: I have learned a lot!</p>
+			<p>This site is built using the Python web-framework, Flask. I use the SQLAlchemy API to store and retrieve data from an SQLite database. All the HTML and CSS is completely custom (no bootstrap). Ok, maybe not completely custom - any sane person knows that Reddit and Stack Overflow are necessary for any project.</p>
+			<p>The site you are viewing now is not a final product, and likely never will be. This is where I learn and experiment. This is my professional classroom. Take a look around...</p>
+		</div>
+	</div>
+	
+	<hr style="width: 75%;">
+	
+	<div class="section narrow pad">
+		<div class="lang__callout pad">
+			<a href="https://www.python.org/"><img class="lang__callout" alt="Python logo" src="{{ url_for('static', filename='images/python_logo.png') }}"></a>
+		</div>
+		<div class="lang__callout pad">
+			<a href="https://palletsprojects.com/p/flask/" title=""><img class="lang__callout" alt="Flask logo" src="{{ url_for('static', filename='images/flask_logo.png') }}"></a>
+		</div>
+		<div class="lang__callout pad">
+			<a href="https://www.sqlalchemy.org/" title=""><img class="lang__callout" alt="SQLAlchemy logo" src="{{ url_for('static', filename='images/sqla_logo.png') }}"></a>
+		</div>
+	</div>
+
+	<hr style="width: 75%;">
+
+	<div class="section narrow pad">
+		<div class="third-width center pad">
+			<a href="/contact" title="Contact Me Button">
+				<button class="btn">Contact Me</button>
+			</a>
+		</div>
+		<div class="third-width center pad">
+			<a href="/portfolio" title="View Portfolio" target="_blank">
+				<button class="btn">View Portfolio</button>
+			</a>
+		</div>
+		<div class="third-width center pad">
+			<a href="/brandon_miller_resume/" title="Download Resume" target="_blank">
+				<button class="btn"><i class="fa fa-download" aria-hidden="true"></i>&nbsp;&nbsp;Resume</button>
+			</a>
+		</div>
+	</div>
+	
+
+	
+	<h2 class="full-width pad center">Real References</h2>
+	<div class="section references pad">
+		
+		{% for x in references %}
+
+			<div class="reference container full-width">
+				<p class="full-width"><strong>{{x.fname}} {{x.lname}}</strong></p>
+				<p class="half-width">{{x.title}}</p>
+				<p class="half-width">{{x.relationship}}</p>
+				<p class="full-width msg">{{x.msg}}</p>
+			</div>
+
+		{% endfor %}
+
+	</div>
+
+	<div class="section narrow pad center">
+		<a class="full-width pad" href="/references" title="Leave a Reference">
+			<button class="btn">Leave a Reference</button>
+		</a>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 	<div class="section narrow pad">
+		
+		<div id="submitref" class="full-width center pad">
+			<h2>Submit a Reference <i class="fa fa-chevron-down" aria-hidden="true"></i></h2>
+		</div>
+		
+		<form id="refform" class="form full-width section" name="reference" action="" method="POST" accept-charset="utf-8">
+
+			<div class="half-width fname">
+				<label for="fname">First name: </label>
+				<input type="text" name="fname">
+			</div>
+			<div class="half-width lname">
+				<label for="lname">Last name: </label>
+				<input type="text" name="lname">
+			</div>
+			<div class="half-width fname">
+				<label for="subject">Title: </label>
+				<input type="text" name="email" placeholder="Your current job title.">
+			</div>
+			<div class="half-width lname">
+				<label for="subject">Relationship: </label>
+				<select id="relationship" name="relationship">
+					<option value="">Choose one...</option>
+					<option value="Boss">Boss</option>
+					<option value="Former Boss">Former Boss</option>
+					<option value="Colleague">Colleague</option>
+					<option value="Former Colleague">Former Colleague</option>
+					<option value="Friend">Friend</option>
+					<option value="Coach">Coach</option>
+					<option value="Other">Other</option>
+				</select>
+			</div>
+			<div class="full-width">
+				<label class="tooltip" for="message">Email (optional):<span class="tooltiptext">By entering your email, you agree to the display of your email on this website. You agree to be contacted by any would be employers. I will never sell your email.</span></label>
+				<input class="msg" type="text" name="msg" placeholder="Click for more info.">
+			</div>
+			<div class="full-width">
+				<label for="subject">Message: </label>
+				<textarea type="text" name="email" placeholder="Tell us how you really feel!"></textarea>
+			</div>
+			<div class="full-width center">
+				<input class="btn-form" type="submit" name="submit">
+			</div>
+		</form>
+	</div> -->
+
+</div>
+
+{% endblock %}

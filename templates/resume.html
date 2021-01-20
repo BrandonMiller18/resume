@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+{% block title %}Brandon Miller | Resume{% endblock %}
+{% set active_page = "resume" %}
+{% block content %}
+
+
+<div class="container">
+	<!-- Start resume header -->
+	<div class="resume-head">
+		<h1 class="resume-title">Brandon Miller</h1>
+
+		<a class="resume-contact" href="/contact">
+			<button class="resume-contact btn">Contact Me</button>
+		</a>			
+
+
+		<img class="headshot" src="static/images/me.jpg" alt="Brandon headshot">
+		
+
+<!-- 			<p class="desktop resume-info-label">Phone: </p>
+		<a class="desktop resume-info" href="tel:3144492804" title="">314-449-2804</a>
+		<p class="desktop resume-info-label">Email: </p>
+		<a class="desktop resume-info" href="mailto:blmiller0809@gmail.com?subject=Resume Site Inquiry">blmiller0809@gmail.com</a> -->
+	
+
+	</div>
+	<!-- End resume header -->
+	
+	<!-- BEGIN SKILLS SECTION -->
+	<div class="section narrow skills">
+		<h2 class="section-title">Skills</h2>
+		<div class="skill">
+			<div class="genius">
+				<span class="skill__name">Vendor Management</span>
+				<span class="skill__strength">100%</span>
+			</div>
+		</div>
+		<div class="skill">
+			<div class="pro">
+				<span class="skill__name">HTML/CSS</span>
+				<span class="skill__strength">90%</span>				
+			</div>
+		</div>
+
+		<div class="skill">
+			<div class="pro">
+				<span class="skill__name">Project Management</span>
+				<span class="skill__strength">90%</span>				
+			</div>
+		</div>
+
+		<div class="skill">
+			<div class="almostpro">
+				<span class="skill__name">Magento 2 Admin</span>
+				<span class="skill__strength">85%</span>				
+			</div>
+		</div>
+
+		<div class="skill">
+			<div class="intermediate">
+				<span class="skill__name">Python</span>
+				<span class="skill__strength">75%</span>				
+			</div>
+		</div>
+
+		<div class="skill">
+			<div class="beginner">
+				<span class="skill__name">PHP</span>
+				<span class="skill__strength">50%</span>				
+			</div>
+		</div>
+	</div>
+
+	<!-- BEGIN EXPERIENCE SECTION -->
+
+	<div class="section narrow experience">
+		<h2 class="section-title">Work Experience</h2>
+		<div class="job">	
+			<h3 class="job-title">eCommerce Manager</h3>
+			<p class="company">HDIS Inc.</p>
+			<p class="duration">Sept 2019 - Present</p>
+			<a class="website" href="https://www.hdis.com">View Website</a>
+			<ul class="description">
+				<li>Maintain 5 Magento 2 ecommerce websites while managing the development/launch of 2 more ecommerce stores</li>
+				<li>Developed and launched a new ecommerce brand</li>
+				<li>Increased Google Lighthouse accessibility score from 75 to 90</li>
+				<li>Upgraded from Magento 2.1.14 to 2.3.2</li>
+				<li>Achieved first passing PCI DSS scan since 2017</li>
+				<li>Saved company ~$1,200 in hosting fees per month by migrating to a new solution</li>
+				<li>Manage web development agency – prioritize tickets and collaborate on solutions – hired new agency in July 2020</li>
+				<li>Manage off hours bi-weekly deployments</li>
+				<li>Manage webservers and firewalls</li>
+				<li>Build landing pages for advertising campaigns (HTML/CSS + copywriting)</li>
+				<li>Maintain product data ensuring data accuracy and consistency</li>
+				<li>Provide weekly and monthly reporting on web performance</li>
+				<li>Admin activities</li>
+			</ul>
+		</div>
+		<div class="job">	
+			<h3 class="job-title">Associate Marketing Manager</h3>
+			<p class="company">HDIS Inc.</p>
+			<p class="duration">Aug 2018 - Sept 2019</p>
+			<a class="website" href="https://www.hdis.com">View Website</a>
+			<ul class="description">
+				<li>Execute multi-million dollar advertising campaigns from strategy to implementation</li>
+				<li>Improved direct mail conversion by running A/B list and creative tests</li>
+				<li>Created, tested, and implemented a new direct mail creative which decreased printing costs and beat the long standing “control creative”</li>
+				<li>Introduced and executed Facebook advertising – achieved ~$8 ROAS</li>
+				<li>Manage Amazon listings and enhanced brand content</li>
+				<li>Analyze and work to improve TV campaign results by working with external and internal call center resources to improve lead generation</li>
+				<li>Proof and edit any content being generated in any medium</li>
+				<li>Analyze and work to improve PPC campaign results</li>
+				<li>Assist where needed in other areas of the business (brand management, customer surveys, and more)</li>
+			</ul>
+		</div>
+		<div class="job">	
+			<h3 class="job-title">Account Service Coordinator</h3>
+			<p class="company">Borgmeyer Marketing Group</p>
+			<p class="duration">Aug 2017 - Jul 2018</p>
+			<a class="website" href="https://www.bmg7677.com">View Website</a>
+			<ul class="description">
+				<li>Manage portfolio of 8 clients (car dealerships)</li>
+				<li>Act as a main POC for all clients</li>
+				<li>Provide creative and strategic insights</li>
+				<li>Write creative brief for monthly digital assets (display banners, web banners, etc.)</li>
+				<li>Provide creative brief for monthly TV and radio spots</li>
+				<li>Proof all creative and reporting, submit to client for approval</li>
+				<li>Proof all media buys, create media calendar by month for client approval</li>
+				<li>Request revisions on creative based on client feedback</li>
+				<li>Create detailed monthly reporting on campaigns and overall dealership performance</li>
+				<li>Administrative account maintenance tasks</li>
+			</ul>
+		</div>
+		<div class="job">	
+			<h3 class="job-title">Head Baseball Coach</h3>
+			<p class="company">Recruits Baseball Club</p>
+			<p class="duration">2014 - Aug 2017</p>
+			<a class="website" href="https://www.recruitsbaseball.com">View Website</a>
+			<ul class="description">
+				<li>Head coach of the 13u Recruits Baseball Club travel baseball team</li>
+				<li>Private pitching instructor</li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- BEGIN EDUCATION SECTION -->
+
+	<div class="section narrow education">
+		<h2 class="section-title">Education</h2>
+		<div class="job">
+			<h3 class="job-title">Lindenwood University</h3>
+			<p class="company">B.S. Marketing</p>
+			<p class="duration">May 2017</p>
+			<ul class="description">
+				<li>Pitcher on NCAA DII baseball team</li>
+				<li>Student-athlete academic achievment award</li>
+				<li>3.77 GPA</li>
+				<li>Early start MBA program</li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- END RESUME -->
+
+	<div class="section narrow pad">
+		<div class="half-width center">
+			<a href="/portfolio" title="See Portfolio">
+				<button class="btn">View Portfolio</button>
+			</a>
+		</div>
+		<div class="half-width center">
+			<a href="/references" title="View References">
+				<button class="btn">View References</button>
+			</a>
+		</div>
+	</div>
+
+</div>
+{% endblock %}

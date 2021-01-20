@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Brandon Miller | Portfolio{% endblock %}
+{% set active_page = "portfolio" %}
+{% block content %}
+
+	<div class="page-header">
+		<h1 class="page-title">Portfolio!</h1>
+	</div>
+
+	<div class="container narrow pad portfolio">
+				<p class="mobile center full-width">Click to learn more</p>
+
+<!-- START PROJECTS -->
+
+		<div class="section project scrape">
+			<div class="full-width pname">
+				<h2>eCommerce Web Scraper</h2>				
+			</div>
+			<div class="full-width pdescription">
+				<p>Created a web scraper using Python3 and the Beautiful Soup library. The scraper crawls a website and writes product information (name, price, description) to a .csv file for review.</p>
+			</div>
+		</div>
+
+		<div class="section project sg">
+			<div class="full-width pname">
+				<h2>eCommerce Brand</h2>				
+			</div>
+			<div class="full-width pdescription">
+				<p>Led the launch of a new eCommerce brand. Managed timelines, agency partners, and internal stakeholders to complete the development, integration, and launch of <a href="https://www.sofiaandgrace.com" title="">Sofia & Grace</a></p>
+			</div>
+		</div>
+
+		<div class="section project pwm">
+			<div class="full-width pname">
+				<h2>Password Manager</h2>				
+			</div>
+			<div class="full-width pdescription">
+				<p>Created a password manager app from scratch using Python3 and the Tkinter GUI API. The app creates MySQL records and can add, read, delete one, and delete all records from the database.</p>
+			</div>
+		</div>
+
+
+		<div class="section project coa">
+			<div class="full-width pname">
+				<h2>Direct Mail Kit</h2>				
+			</div>
+			<div class="full-width pdescription">
+				<p>Created a new direct mail kit which outperformed the longstanding "control" creative. Worked with Coming of Age to create the kit.</p>
+			</div>
+		</div>
+		
+		<div class="section project hdis">
+			<div class="full-width pname">
+				<h2>Magento 2 Landing Pages</h2>				
+			</div>
+			<div class="full-width pdescription">
+				<p>Build landing pages in Magento 2 to support marketing activities and provide a clean, seamless user experience.</p>
+			</div>
+		</div>
+	
+<!-- END PROJECTS -->
+
+		<div class="half-width center pad">
+			<a href="/contact" title="Contact Me Button">
+				<button class="btn">Contact Me</button>
+			</a>
+		</div>
+		<div class="half-width center pad">
+			<a href="/portfolio/more-info" title="">
+				<button class="btn">More Info <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+			</a>
+		</div>
+
+	</div>
+
+{% endblock %}

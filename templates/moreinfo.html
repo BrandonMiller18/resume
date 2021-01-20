@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Brandon Miller | More Info{% endblock %}
+{% set active_page = "moreinfo" %}
+{% block content %}
+
+<div class="page-header">
+	<h1 class="page-title">Portfolio Info!</h1>
+</div>
+
+<div class="container">
+	
+	<div class="section pad">
+		<div class="half-width section reference">
+			<h2 class="full-width">eCommerce Web Scraper</h2>
+			<p class="full-width">I built a webscraper using Python3 and the Beautiful Soup python library. I began this project with one goal: build something practical using Python. I figured there is nothing more practical than stalking competitor's information. The code in the repository has the specific competitor's address removed as to not make this information public.</p>
+			<p class="full-width">The scraper begins by starting at a page on the competitor's site which contains links to all of their product categories. It then stores those URLs (plp_url) in a list. Then, I loop through the list to find all the product detail page URLs (pdp_url). Then, I loop through those URLs to gather the product metadata and parse through the JSON to get the name, price, and description of each product.</p>
+			<p class="full-width">A downfall of this project is it is highly customized to their specific website, so it is not easily portable to other stores. However, their store is pretty complex in terms of how you must access the data, so I can say with a high level of confidence that most other stores would be easier to scrape. In the future, I would love to build a scraper with a GUI where the user controls what information the scraper is to retrieve from a specific website.</p>
+			<a class="full-width" href=""><button class="btn btn__download"><i class="fa fa-download" aria-hidden="true"></i></button></a>
+		</div>
+		<div class="half-width section reference">
+			<h2 class="full-width">eCommerce Brand</h2>
+			<p class="full-width">I played a major role in launching a new eCommerce brand, Sofia & Grace. Sofia & Grace is a bladder control brand focused on destigmitizing incontinence and empowering women through the power of community. I was/am intimitely involved in the development process. I am the liason between the development agency and our internal team. I communicate with external and internal developers daily to solve solutions as they arise.</p>
+			<a class="full-width" href="https://www.sofiaandgrace.com"><button class="btn btn__download">View Store</button></a>
+		</div>
+		<div class="half-width section reference">
+			<h2 class="full-width">Password Manager</h2>
+			<p class="full-width">Lorem ipsum</p>
+			<a class="full-width" href="/pwm-download/" target="_blank"><button class="btn btn__download"><i class="fa fa-download" aria-hidden="true"></i></button></a>
+		</div>
+		<div class="half-width section reference">
+			<h2 class="full-width">Magento 2 Landing Pages</h2>
+			<p class="full-width">Lorem ipsum</p>
+			<a class="half-width" href="">Links to pages</a>
+			<a class="half-width" href="">Links to pages</a>
+			<a class="half-width" href="">Links to pages</a>
+			<a class="half-width" href="">Links to pages</a>
+		</div>
+		<div class="half-width section reference">
+			<h2 class="full-width">Direct Mail Kit</h2>
+			<p class="full-width">Lorem ipsum</p>
+			<a class="full-width" href=""><button class="btn btn__download"><i class="fa fa-download" aria-hidden="true"></i></button></a>
+		</div>
+
+	</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}Brandon Miller | References{% endblock %}
+{% set active_page = "references" %}
+{% block content %}
+
+
+
+<div class="page-header">
+	{% if not session['ref'] %}
+	<h1 class="page-title">Submit or Review References</h1>
+	{% else %}
+	<h1 class="page-title">Review References</h1>
+	{% endif %}
+</div>
+
+<div class="container">
+	
+	<div class="section narrow pad">
+		
+		
+		{% if not session['ref'] %}
+		<div id="submitref" class="full-width center pad">
+			<h2>Submit a Reference <i class="fa fa-chevron-down" aria-hidden="true"></i></h2>
+		</div>
+
+		<!-- START REFERENCE SUBMIT FORM -->
+
+		<form id="refform" class="form full-width section" name="reference" action="" method="POST" accept-charset="utf-8">
+			<div class="half-width fname">
+				<label for="fname">First name: </label>
+				<input id="fname" type="text" name="fname" value="" required>
+			</div>
+			<div class="half-width lname">
+				<label for="lname">Last name: </label>
+				<input id="lname" type="text" name="lname" required>
+			</div>
+			<div class="half-width fname">
+				<label for="title">Title: </label>
+				<input id="title" type="text" name="title" placeholder="Your current job title." required>
+			</div>
+			<div class="half-width lname">
+				<label for="relationship">Relationship: </label>
+				<select id="relationship" name="relationship" required>
+					<option value="">Choose one...</option>
+					<option value="Boss">Boss</option>
+					<option value="Former Boss">Former Boss</option>
+					<option value="Colleague">Colleague</option>
+					<option value="Former Colleague">Former Colleague</option>
+					<option value="Friend">Friend</option>
+					<option value="Coach">Coach</option>
+					<option value="Other">Other</option>
+				</select>
+			</div>
+			<div class="full-width">
+				<label id="email" class="tooltip" for="message">Email (optional):<span class="tooltiptext">By entering your email, you agree to the display of your email on this website. You agree to be contacted by any would be employers. I will never sell your email.</span></label>
+				<input class="msg" type="text" name="email" placeholder="Click for more info.">
+			</div>
+			<div class="full-width">
+				<label for="msg">Message: </label>
+				<textarea id="msg" type="text" name="msg" placeholder="Tell us how you really feel!" required></textarea>
+			</div>
+			<div class="full-width center">
+				<input class="btn-form" type="submit" name="submit" value="Submit">
+			</div>
+		</form>
+
+		{% endif %}
+
+		<!-- END REFERENCE SUBMIT FORM -->
+	</div>
+
+	<!-- BEGIN REFERENCES -->
+	{% if not session['ref'] %}
+	<h2 class="full-width pad center">Submitted References</h2>
+	{% endif %}
+	
+	<div class="section references pad">
+		
+		{% for x in references %}
+
+			<div class="reference container full-width">
+				<p class="full-width"><strong>{{x.fname}} {{x.lname}}</strong></p>
+				<p class="half-width">{{x.title}}</p>
+				<p class="half-width">{{x.relationship}}</p>
+				<p class="full-width msg">{{x.msg}}</p>
+			</div>
+
+		{% endfor %}
+
+	</div>
+
+	<!-- END REFERENCES -->
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>{% block title %}{% endblock %}</title>
+	<meta name="viewport" content="width=device-width">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/stylesheet.css') }}">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script>
+		function myFunction() {
+		  var x = document.getElementById("hide");
+		  if (x.style.display === "block") {
+		    x.style.display = "none";
+		  } else {
+		    x.style.display = "block";
+		  }
+		}
+	</script>
+</head>
+
+
+<nav>
+	{% if active_page == 'contact' %}
+	<a class="home" href="/" title="">Home</a>
+	{% else %}
+	<a class="home" href="/" title="">Home</a>
+	<div id="hide">
+		<a class="navitem {{'active' if active_page == 'resume'}}" href="/resume" title="">Resume</a>
+		<a class="navitem {{'active' if active_page == 'portfolio'}}" href="/portfolio" title="">Portfolio</a>
+		<a class="navitem {{'active' if active_page == 'references'}}" href="/references" title="">References</a>
+		<a class="navitem {{'active' if active_page == 'about'}}" href="/about" title="">About Me</a>
+		<a class="navitem nav-contact" href="/contact">Let's Talk!</a>
+	</div>
+	<a class="icon" href="javascript:void(0);" onclick="myFunction()" aria-label="mobile navigation">
+			<i class="fa fa-bars"></i>
+	</a>
+	{% endif %}
+
+</nav>
+
+<body>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for category, message in messages %}
+      <div class="{{ category }}"><p>{{ message }}</p></div>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+{% block content %}{% endblock %}
+
+<!-- {% if "contact" in session %}
+{% include "includes/thankyou.html" %}
+{% endif %} -->
+
+
+</body>
+
+{% include "includes/footer.html" %}

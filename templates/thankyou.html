@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Thank you, {{ fname }}!{% endblock %}
+{% set active_page = "thankyou" %}
+{% block content %}
+
+	<div class="container">
+		<div class="page-header">
+			<h1 class="page-title">Thank you, {{ fname }}!</h1>
+		</div>
+		<div class="section narrow">
+			<div class="full-width">
+				<p>{{ fname }}, </p>
+				<p>I greatly appreciate your inquiry. All inquiries from this site are automatically emailed to my inbox. I will reply to your message within the next 72 hours.</p>
+				<p>Thank you!</p>
+			</div>
+		</div>
+		
+	</div>
+
+{% endblock %}
+
+
+</body>
