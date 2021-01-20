@@ -124,7 +124,7 @@ def reference():
 		# show thank you message
 		flash("Thank you for your feedback!", "success")
 
-	if session['ref']:
+	if "ref" in session:
 		flash("Thank you for your feedback!", "success")
 			
 
