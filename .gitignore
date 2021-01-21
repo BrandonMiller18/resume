@@ -1,5 +1,5 @@
-# Logs and databases #
 *.sqlite3
 *.sqlite
 *.sql
-*.log
+
+__pycache__
