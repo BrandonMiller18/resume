@@ -19,7 +19,7 @@ app.config['MAIL_DEFAULT_SENDER'] = 'blmiller0809@gmail.com'
 # app.config['MAIL_MAX_EMAILS'] = None
 # app.config['MAIL_SUPPRESS_SEND'] = 
 # app.config['MAIL_ASCII_ATTACHMENTS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3' # change to system variable
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 mail = Mail(app)
@@ -119,7 +119,7 @@ def reference():
 					<p><strong>Email: </strong>{form_email}</p>
 					<p><strong>Msg:</strong> {form_msg}</p>"""
 
-		# mail.send(msg)
+		mail.send(msg)
 
 		# flash thank you message
 		flash("Thank you for your feedback!", "success")
