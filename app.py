@@ -123,11 +123,10 @@ def reference():
 
 		# show thank you message
 		flash("Thank you for your feedback!", "success")
-
-	if "ref" in session:
-		flash("Thank you for your feedback!", "success")
-			
-
+	else:
+		if "ref" in session:
+			flash("Thank you for your feedback!", "success")
+	
 	return render_template("references.html", references=references.query.all())
 
 
