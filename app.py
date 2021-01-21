@@ -119,7 +119,7 @@ def reference():
 					<p><strong>Email: </strong>{form_email}</p>
 					<p><strong>Msg:</strong> {form_msg}</p>"""
 
-		mail.send(msg)
+		# mail.send(msg)
 
 		# flash thank you message
 		flash("Thank you for your feedback!", "success")
