@@ -94,6 +94,8 @@ def reference():
 	pass in 'references' variable to render template to display entries
 	in database on the front end"""
 	if request.method == "POST":
+		session['ref'] = True # set session variable, used to remove form from reference page
+		
 		fname = request.form["fname"]
 		lname = request.form["lname"]
 		title = request.form["title"]
@@ -119,13 +121,8 @@ def reference():
 
 		mail.send(msg)
 
-		session['ref'] = True # set session variable, used to remove form from reference page
-
-		# show thank you message
+		# flash thank you message
 		flash("Thank you for your feedback!", "success")
-	else:
-		if "ref" in session:
-			flash("Thank you for your feedback!", "success")
 	
 	return render_template("references.html", references=references.query.all())
 

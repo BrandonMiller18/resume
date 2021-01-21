@@ -966,14 +966,11 @@ img.headshot {
 
 	/*END MOBILE ABOUT*/
 
-	.typewriter h1 {
-		grid-column: span 12;
-	}
-
 }
 
 
 @keyframes transitionIn {
+	/* this is the smooth page transition */
 	from {
 		opacity: 0;
 		transform: rotateX(-8deg);
@@ -983,16 +980,4 @@ img.headshot {
 		opacity: 1;
 		transform: rotateX(0deg);
 	}
-}
-
-/* The typing effect */
-@keyframes typing {
-	from { width: 0 }
-	to { width: 100% }
-}
-
-/* The typewriter cursor effect */
-@keyframes blink-caret {
-	from, to { border-color: transparent }
-	50% { border-color: limegreen; }
 }
