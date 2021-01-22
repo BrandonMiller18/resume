@@ -2,5 +2,8 @@
 *.sqlite
 *.sql
 
+# dev environment variables
+.env
+
 __pycache__
 venv

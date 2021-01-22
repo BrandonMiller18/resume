@@ -211,6 +211,10 @@ footer.container {
 	font-size: 34px;
 }
 
+.hero img {
+	width: 100vw;
+}
+
 .btn {
 	padding: 8px 15px;
 	width: 50%;

@@ -1,30 +1,31 @@
 import os
 import smtplib
 from flask import Flask, redirect, url_for, render_template, send_file, request, session, make_response, flash
-from flask_mail import Mail, Message
+# from flask_mail import Mail, Message
 from flask_sqlalchemy import SQLAlchemy
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 
 app = Flask(__name__)
 
 app.secret_key = 'dev'
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_SERVER'] = 'smtp.office365.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
 app.config['MAIL_DEBUG'] = False
-app.config['MAIL_USERNAME'] = 'blmiller0809@gmail.com' # change to system variable for prod
-app.config['MAIL_PASSWORD'] = 'qpwo1029!' # change to system variable for prod
-app.config['MAIL_DEFAULT_SENDER'] = 'blmiller0809@gmail.com'
+app.config['MAIL_USERNAME'] = os.environ.get("MAIL_USERNAME")
+app.config['MAIL_PASSWORD'] = os.environ.get("MAIL_PASSWORD")
+app.config['MAIL_DEFAULT_SENDER'] = os.environ.get("MAIL_DEFAULT_SENDER")
 # app.config['MAIL_MAX_EMAILS'] = None
 # app.config['MAIL_SUPPRESS_SEND'] = 
 # app.config['MAIL_ASCII_ATTACHMENTS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3' # change to system variable
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("SQLALCHEMY_DATABASE_URI")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 mail = Mail(app)
 db = SQLAlchemy(app)
-
 
 class references(db.Model):
 	# create model (table), "references" in SQLite db using SQLAlchemy
@@ -108,18 +109,37 @@ def reference():
 		db.session.add(ref)
 		db.session.commit()
 
-		# notify me I recieved a reference
-		msg = Message(
-			subject = 'New Reference!',
-			recipients = ['blmiller0809@gmail.com'], # replace with evironment variable on prod
-			reply_to = form_email,
-			)
 
-		msg.html = f"""<p>You recieved a reference from <strong>{fname} {lname}!</strong></p>
-					<p><strong>Email: </strong>{form_email}</p>
-					<p><strong>Msg:</strong> {form_msg}</p>"""
+		# send email using SendGrid API
+		msg = Mail(from_email='brandon@brandonlmiller.com',
+			to_emails='blmiller0809@gmail.com',
+			subject='New Reference!',
+			html_content=f"""<p>You recieved a reference from <strong>{fname} {lname}!</strong></p>
+		 			<p><strong>Email: </strong>{form_email}</p>
+		 			<p><strong>Msg:</strong> {form_msg}</p>""")
 
-		mail.send(msg)
+		try:
+			sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+			response = sg.send(msg)
+			print(response.status_code)
+			print(response.body)
+			print(response.headers)
+		except Exception as e:
+			print(e.msg)
+
+		# # send email via Flask-Mail
+		# # notify me I recieved a reference
+		# msg = Message(
+		# 	subject = 'New Reference!',
+		# 	recipients = ['blmiller0809@gmail.com'], # replace with evironment variable on prod
+		# 	reply_to = form_email,
+		# 	)
+
+		# msg.html = f"""<p>You recieved a reference from <strong>{fname} {lname}!</strong></p>
+		# 			<p><strong>Email: </strong>{form_email}</p>
+		# 			<p><strong>Msg:</strong> {form_msg}</p>"""
+
+		# mail.send(msg)
 
 		# flash thank you message
 		flash("Thank you for your feedback!", "success")
@@ -146,26 +166,47 @@ def contact():
 		form_msg = request.form["msg"]
 		session["fname"] = fname # save fname as session variable 'fname'
 
-		# email contact me submission
-		msg = Message( # create message to send via flask_mail 
+		
+		# send email using SendGrid API
+		msg = Mail(from_email='brandon@brandonlmiller.com',
+			to_emails='blmiller0809@gmail.com',
 			subject=sbj,
-			recipients=['blmiller0809@gmail.com'], # recipients = [list]
-			reply_to=form_email
-			)
+			html_content=f"""<p><strong>Message From: </strong>{fname} {lname}</p>
+		 			<p><strong>Company: </strong>{company}</p>
+		 			<p>{form_msg}</p>""")
+
+		try:
+			sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+			response = sg.send(msg)
+			print(response.status_code)
+			print(response.body)
+			print(response.headers)
+		except Exception as e:
+			print(e.msg)
+
+
+		# # send email via Flask-Mail
+		# msg = Message( # create message to send via flask_mail 
+		# 	subject=sbj,
+		# 	recipients=['blmiller0809@gmail.com'], # recipients = [list]
+		# 	reply_to=form_email
+		# 	)
 		
-		# html format for email
-		msg.html = f"""<p><strong>Message From: </strong>{fname} {lname}</p>
-					<p><strong>Company: </strong>{company}</p>
-					<p>{form_msg}</p>"""
+
+		# # html format for email
+		# msg.html = f"""<p><strong>Message From: </strong>{fname} {lname}</p>
+		# 			<p><strong>Company: </strong>{company}</p>
+		# 			<p>{form_msg}</p>"""
 		
-		mail.send(msg)
+		# mail.send(msg)
 
 		# set first name as cookie to identify user upon return to site
 		res = make_response(redirect(url_for("thank_you")))
 		res.set_cookie(
-			'fn', # 
+			'fn', # cookie name
 			value=fname,
 			max_age=2592000,
+			httponly=True,
 			)
 		
 		return res
