@@ -63,14 +63,28 @@ def home():
 @app.route("/brandon_miller_resume/")
 def return_resume():
 	return send_file(
-		"static/20210103_Brandon_Miller_Resume.pdf", 
+		"static/downloads/20210103_Brandon_Miller_Resume.pdf", 
 		as_attachment=True,
 		attachment_filename="Brandon_Miller_Resume.pdf",
 		)
 
+@app.route("/directmail-kit/")
+def return_dmkit():
+	return send_file(
+		"static/downloads/coa.zip",
+		as_attachment=True,
+		attachment_filename="CoA_DM_Kit.zip")
+
+@app.route("/automation_example/")
+def return_automation():
+	return send_file(
+		"static/downloads/automation.gif",
+		as_attachment=True,
+		attachment_filename="python_automation.gif")
+
 @app.route("/pwm-download/")
 def return_pwm():
-	return send_file("static/pwm.zip",
+	return send_file("static/downloads/pwm.zip",
 		as_attachment=True,
 		attachment_filename="pwm.zip",
 		)
