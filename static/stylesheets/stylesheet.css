@@ -215,7 +215,6 @@ footer.container {
 	width: 100vw;
 	height: 90vh;
 	background-color: #333;
-	animation: transitionIn 0.5s;
 }
 
 .btn {
@@ -615,7 +614,7 @@ div.lang__callout {
 .sg {background-image: url("../images/sg_proj.png");}
 .pwm {background-image: url("../images/pwm_proj.png");}
 .scrape {background-image: url("../images/scrape_proj.png");}
-.auto {background-image: url("../images/auto_proj.png");}
+.auto {background-image: url("../images/automate_proj.png");}
 .hdis {background-image: url("../images/hdis_proj.png");}
 
 
