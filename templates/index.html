@@ -3,9 +3,7 @@
 {% set active_page = "index" %}
 {% block content %}
 
-
 <div class="page-header">
-<!-- If fname cookie is set, then we will greet that user by their name -->
 	{% if not fn %}
 	<h1 class="page-title">Welcome.</h1>
 	{% else %}
@@ -14,20 +12,24 @@
 </div>
 
 <div class="hero">
+	<!-- If fname cookie is set, then we will greet that user by their name -->
 
-</div>
 
-<div class="container">
 
-	<div class="section narrow pad">
-		<div class="full-width pad intro">
+
+
+
+	<div class="section narrow pad hero__text">
+		<div class="full-width pad">
 			<p>Welcome to what is probably the millionth iteration of my resume website. If you are reading this, it means I have finally gotten this bad boy to a place where I am happy enough to launch it (I've only owned the domain for over a year...)! Jokes aside, I started this project with one goal: LEARN. Spoiler alert: I have learned a lot!</p>
 			<p>This site is built using the Python web-framework, Flask. I use the SQLAlchemy API to store and retrieve data from an SQLite database. All the HTML and CSS is completely custom (no bootstrap). Ok, maybe not completely custom - any sane person knows that Reddit and Stack Overflow are necessary for any project.</p>
 			<p>The site you are viewing now is not a final product, and likely never will be. This is where I learn and experiment. This is my professional classroom. Take a look around...</p>
 		</div>
 	</div>
-	
-	<hr style="width: 75%;">
+
+</div>
+
+<div class="container">
 	
 	<div class="section narrow pad">
 		<div class="lang__callout pad">

@@ -55,6 +55,7 @@ def home():
 	cookies = request.cookies
 	fn = cookies.get('fn')
 
+
 	# pass references table from db and first name cookie for use on the homepage
 	return render_template("index.html", references=references.query.all(), fn=fn)
 
