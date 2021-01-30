@@ -11,8 +11,7 @@
 	{% endif %}
 </div>
 
-<div class="hero">
-	<!-- If fname cookie is set, then we will greet that user by their name -->
+<!-- <div class="hero">
 
 
 
@@ -27,19 +26,25 @@
 		</div>
 	</div>
 
-</div>
+</div> -->
 
 <div class="container">
 	
-	<div class="section narrow pad">
-		<div class="lang__callout pad">
-			<a href="https://www.python.org/"><img class="lang__callout" alt="Python logo" src="{{ url_for('static', filename='images/python_logo.png') }}"></a>
+	<div class="section narrow pad home">
+		<div class="home__img"></div>
+		<div class="home__title">
+			<h2>A bit about me.</h2>
+			<p class="home__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis lectus feugiat, commodo nibh vitae, consectetur felis. Proin accumsan diam lacus, eget ultrices enim maximus nec. Pellentesque ac posuere tellus. Proin maximus metus arcu, ut dignissim ipsum rutrum a. Pellentesque volutpat neque non justo sagittis, quis semper est placerat. Suspendisse tristique nisl vestibulum, consectetur eros id, tincidunt purus. Donec et.</p>
 		</div>
-		<div class="lang__callout pad">
-			<a href="https://palletsprojects.com/p/flask/" title=""><img class="lang__callout" alt="Flask logo" src="{{ url_for('static', filename='images/flask_logo.png') }}"></a>
+		<div class="home__img"></div>
+		<div class="home__title">
+			<h2>About this website.</h2>
+			<p class="home__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis lectus feugiat, commodo nibh vitae, consectetur felis. Proin accumsan diam lacus, eget ultrices enim maximus nec. Pellentesque ac posuere tellus. Proin maximus metus arcu, ut dignissim ipsum rutrum a. Pellentesque volutpat neque non justo sagittis, quis semper est placerat. Suspendisse tristique nisl vestibulum, consectetur eros id, tincidunt purus. Donec et.</p>
 		</div>
-		<div class="lang__callout pad">
-			<a href="https://www.sqlalchemy.org/" title=""><img class="lang__callout" alt="SQLAlchemy logo" src="{{ url_for('static', filename='images/sqla_logo.png') }}"></a>
+		<div class="home__img"></div>
+		<div class="home__title">
+			<h2>Updated periodically. Take a look.</h2>
+			<p class="home__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis lectus feugiat, commodo nibh vitae, consectetur felis. Proin accumsan diam lacus, eget ultrices enim maximus nec. Pellentesque ac posuere tellus. Proin maximus metus arcu, ut dignissim ipsum rutrum a. Pellentesque volutpat neque non justo sagittis, quis semper est placerat. Suspendisse tristique nisl vestibulum, consectetur eros id, tincidunt purus. Donec et.</p>
 		</div>
 	</div>
 
@@ -62,10 +67,13 @@
 			</a>
 		</div>
 	</div>
+
+		<hr style="width: 75%;">
 	
 
 	
 	<h2 class="full-width pad center">Real References</h2>
+	<p class="full-width pad narrow center">References are stored in a Postgres SQL database. Please consider leaving a reference below.</p>
 	<div class="section references pad">
 		
 		{% for x in references %}

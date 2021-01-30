@@ -296,6 +296,10 @@ footer.container {
 	grid-column: span 4;
 }
 
+.twothird-width {
+	grid-column: span 8;
+}
+
 .resume-head {
 	grid-column: span 12;
 	display: grid;
@@ -324,7 +328,7 @@ footer.container {
 }
 /* HOME PAGE CSS */
 
-div.lang__callout {
+/*div.lang__callout {
 	grid-column: span 4;
 }
 
@@ -332,9 +336,37 @@ div.lang__callout {
 	height: 120px;
 	width: auto;
 	text-align: center;
+}*/
+
+
+.home__img {
+	height: 200px;
+	background-color: #0288d120;
+	border-radius: 10px;
 }
 
+.home__img:nth-child(3) {
+	grid-column: 9 / span 4;
+}
 
+.home__img:nth-child(4n+1) {
+	grid-column: 1 / span 4;
+}
+
+.home__title {
+	padding: 10px 20px;
+	text-align: center;
+	grid-column: span 8;
+}
+
+.home__title:nth-child(4) {
+	grid-column: 1 / span 8;
+	grid-row: 2 / span 1;
+}
+
+.home__title > .home__desc:nth-child(even) {
+	text-align: left;
+}
 
 /*END HOME PAGE CSS*/
 /*BEGIN RESUME PAGE CSS*/
@@ -822,6 +854,20 @@ img.headshot {
 		grid-row: 1 / span 3;
 		margin: auto;
 	}
+
+	.home__img {
+		grid-column: span 12 !important;
+	}
+	
+	.home__title {
+		grid-column: span 12 !important;
+	}
+
+	.home__title:nth-child(4) {
+		grid-row: auto;
+	}
+
+
 }
 
 @media only screen and (max-width: 650px) {
