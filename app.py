@@ -257,7 +257,7 @@ def update_record():
 		x.approved = True
 		db.session.commit()
 
-	return render_template("admin/home.html", references=references.query.all())
+	return render_template("admin/admin_references.html", references=references.query.all())
 
 @app.route("/admin/references/delete")
 def delete_record():
@@ -268,7 +268,7 @@ def delete_record():
 		db.session.delete(x)
 		db.session.commit()
 
-	return render_template("admin/home.html", references=references.query.all())
+	return render_template("admin/admin_references.html", references=references.query.all())
 
 
 
