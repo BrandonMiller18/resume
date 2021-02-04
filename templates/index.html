@@ -69,14 +69,15 @@
 		</div>
 	</div>
 
-		<hr style="width: 75%;">
+	<hr style="width: 75%;">
 	
 
-	
+	{% if references %}
 	<h2 class="full-width pad center">Real References</h2>
 	<p class="full-width pad narrow center">References are stored in a Postgres SQL database. Please consider leaving a reference below.</p>
 	<div class="section references pad">
 		
+
 		{% for x in references %}
 
 			<div class="reference container full-width">
@@ -89,6 +90,11 @@
 		{% endfor %}
 
 	</div>
+	{% else %}
+	<h2 class="full-width pad center">No References Yet</h2>
+	<p class="full-width pad narrow center">Please consider leaving a reference below!</p>
+	{% endif %}
+
 
 	<div class="section narrow pad center">
 		<a class="full-width pad" href="/references" title="Leave a Reference">

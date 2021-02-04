@@ -1,0 +1,50 @@
+{% extends "admin/admin_base.html" %}
+{% block title %}Brandon Miller | Admin{% endblock %}
+{% set active_page = "admin" %}
+{% block content %}
+
+
+<div class="page-header">
+	<h1 class="full-width">Welcome to the dark side!</h1>
+</div>
+
+<div class="container">
+	<div class="section">
+		<table class="full-width pad">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Title</th>
+					<th>Email</th>
+					<th>Relationship</th>
+					<th>Message</th>
+					<th>Approved?</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for x in references %}
+				<tr>
+					<td>{{x._id}}</td>
+					<td>{{x.fname}} {{x.lname}}</td>
+					<td>{{x.title}}</td>
+					<td>{{x.email}}</td>
+					<td>{{x.relationship}}</td>
+					<td>{{x.msg}}</td>
+					<td>{{x.approved}}</td>
+					<td class="no_border center"><a href="{{ url_for('update_record', ref_id=x._id) }}"><button class="admin__btn"><i class="fa fa-check" aria-hidden="true"></i></button></a></td>
+					<td class="no_border center"><a href="{{ url_for('delete_record', ref_id=x._id) }}"><button class="admin__btn"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a></td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+
+	</div>
+</div>
+
+
+
+
+
+
+{% endblock %}

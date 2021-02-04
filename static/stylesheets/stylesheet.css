@@ -730,24 +730,6 @@ footer.container {
 	padding-right: 10px;
 }
 
-
-
-
-/* COLLAPSIBLE CONTENT */
-
-
-
-
-/*.error {
-	grid-column: span 12;
-	background-color: #ff0000c2;
-	color: white;
-	font-weight: bold;
-	text-align: center;
-	border-radius: 10px;
-	margin: 10px;
-}*/
-
 textarea {
 	height: 150px;
 	width: 100%;
@@ -757,6 +739,7 @@ textarea {
   	box-sizing: border-box;
   	border-radius: 8px;
   	border-style: solid;
+  	transition: all .7s ease 0s;
 }
 
 input, select {
@@ -767,16 +750,15 @@ input, select {
 	border-radius: 8px;
 	border-width: 1px;
 	border-style: solid;
+	transition: all .7s ease 0s;
 }
 
 input[type=text]:focus, input[type=password]:focus, textarea:focus, select:focus {
-	background-color: #0288d135;
-	border-radius: 0px;
-	border-width: 2px;
+	background-color: #e8f0fe;
 }
 
 input[type=text]:hover, input[type=password]:hover, textarea:hover, select:hover {
-	background-color: #0288d115;
+	background-color: #e8f0fe;
 	transition: all .3s ease 0s;
 	border-width: 1px;
     border-style: inset;
@@ -796,10 +778,41 @@ img.headshot {
 
 /*ADMIN SPECIFIC CSS*/
 
-.btn.admin {
-	margin: auto;
+th {
+	font-family: 'Open Sans', sans-serif;
+	background-color: #333;
+	color: #fff;
 }
 
+tr {
+	font-family: 'Roboto', sans-serif;
+}
+
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+.admin__btn {
+	padding: 8px 10px;
+	width: auto;
+	height: auto;
+	font-weight: bold;
+	background-color: #666;
+	color: white;
+	border-width: 0px;
+	font-size: 16px;
+	border-radius: 10px;
+	text-decoration: none;
+	transition: all .7s ease 0s;
+}
+
+.admin__btn:hover {
+	background-color: #333;
+	color: white;
+	transition: all 0.3s ease 0s;
+	cursor: pointer;
+}
 
 /*THANK YOU CALLOUT*/
 .thankyou {

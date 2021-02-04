@@ -22,14 +22,19 @@ class references(db.Model):
 	email = db.Column(db.String(100))
 	relationship = db.Column(db.String(100))
 	msg = db.Column(db.String(255))
+	approved = db.Column(db.Boolean)
 
-	def __init__(self, fname, lname, title, email, relationship, msg):
+	def __init__(self, fname, lname, title, email, relationship, msg, approved):
 		self.fname = fname
 		self.lname = lname
 		self.title = title
 		self.email = email
 		self.relationship = relationship
 		self.msg = msg
+		self.approved = approved
+
+	def __repr__(self):
+		return '<references %r>' % self.fname, self.lname, self.title, self.email, self.relationship, self.msg, self.approved
 
 db.create_all()
 
@@ -104,9 +109,10 @@ def reference():
 		form_email = request.form["email"]
 		relationship = request.form["relationship"]
 		form_msg = request.form["msg"]
+		apr = False
 
 		# write data to refrences database
-		ref = references(fname, lname, title, form_email, relationship, form_msg)
+		ref = references(fname, lname, title, form_email, relationship, form_msg, apr)
 		db.session.add(ref)
 		db.session.commit()
 
@@ -143,7 +149,7 @@ def reference():
 		# mail.send(msg)
 
 		# flash thank you message
-		flash("Thank you for your feedback!", "success")
+		flash("Thank you! Your reference has been submitted.", "success")
 	
 	return render_template("references.html", references=references.query.all())
 
@@ -231,26 +237,38 @@ def thank_you():
 	else:
 		return "error"
 
+@app.errorhandler(404)
+def not_found(self):
+    """Page not found."""
+    return make_response(render_template("404.html"), 404)
 
+# admin
 
+@app.route("/admin/references")
+def admin_references():
+	return render_template("admin/admin_references.html", references=references.query.all())
 
-# ADMIN SECTION (TBD)
+@app.route("/admin/references/approve")
+def update_record():
+	ref_id = request.args.get("ref_id")
+	if ref_id:
+		ref_id = float(ref_id)
+		x = references.query.get(ref_id)
+		x.approved = True
+		db.session.commit()
 
-# @app.route("/admin", methods=["POST", "GET"])
-# def remove_records():
-	"""If method is POST, grab the query from the form and use SQLAlchemy to
-	execute the query against the db
-	requirements:
-	- table name
-	- record id (or identifier)
-	- Create, update, or delete
-	- Ability to print and read all tables
-	"""
+	return render_template("admin/home.html", references=references.query.all())
 
-# 	if request.method == "POST":
-# 		return "controls"
-# 	else:
-# 		return render_template("admin/login.html")
+@app.route("/admin/references/delete")
+def delete_record():
+	ref_id = request.args.get("ref_id")
+	if ref_id:
+		ref_id = float(ref_id)
+		x = references.query.get(ref_id)
+		db.session.delete(x)
+		db.session.commit()
+
+	return render_template("admin/home.html", references=references.query.all())
 
 
 
