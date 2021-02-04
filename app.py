@@ -34,7 +34,13 @@ class references(db.Model):
 		self.approved = approved
 
 	def __repr__(self):
-		return '<references %r>' % self.fname, self.lname, self.title, self.email, self.relationship, self.msg, self.approved
+		return '<references %r>' % self.fname,
+		self.lname,
+		self.title,
+		self.email,
+		self.relationship,
+		self.msg,
+		self.approved
 
 db.create_all()
 
@@ -48,7 +54,9 @@ def home():
 
 
 	# pass references table from db and first name cookie for use on the homepage
-	return render_template("index.html", references=references.query.all(), fn=fn)
+	return render_template("index.html",
+		references=references.query.all(),
+		fn=fn)
 
 # DOWNLOAD ROUTES
 
@@ -72,7 +80,8 @@ def return_automation():
 	return send_file(
 		"static/downloads/automation.gif",
 		as_attachment=True,
-		attachment_filename="python_automation.gif")
+		attachment_filename="python_automation.gif",
+		)
 
 @app.route("/pwm-download/")
 def return_pwm():
@@ -112,7 +121,13 @@ def reference():
 		apr = False
 
 		# write data to refrences database
-		ref = references(fname, lname, title, form_email, relationship, form_msg, apr)
+		ref = references(fname,
+			lname,
+			title,
+			form_email,
+			relationship,
+			form_msg,
+			apr)
 		db.session.add(ref)
 		db.session.commit()
 
@@ -242,11 +257,17 @@ def not_found(self):
     """Page not found."""
     return make_response(render_template("404.html"), 404)
 
-# admin
+# admin routes
+
+@app.route("/admin/index")
+def admin_home():
+	return render_template("admin/index.html")
 
 @app.route("/admin/references")
 def admin_references():
-	return render_template("admin/admin_references.html", references=references.query.all())
+	return render_template("admin/admin_references.html",
+		references=references.query.all(),
+		)
 
 @app.route("/admin/references/approve")
 def update_record():
@@ -257,7 +278,9 @@ def update_record():
 		x.approved = True
 		db.session.commit()
 
-	return render_template("admin/admin_references.html", references=references.query.all())
+	return render_template("admin/admin_references.html",
+		references=references.query.all(),
+		)
 
 @app.route("/admin/references/delete")
 def delete_record():
@@ -268,7 +291,9 @@ def delete_record():
 		db.session.delete(x)
 		db.session.commit()
 
-	return render_template("admin/admin_references.html", references=references.query.all())
+	return render_template("admin/admin_references.html",
+		references=references.query.all(),
+		)
 
 
 

@@ -79,6 +79,7 @@
 		
 
 		{% for x in references %}
+		{% if x.approved == True %}
 
 			<div class="reference container full-width">
 				<p class="full-width"><strong>{{x.fname}} {{x.lname}}</strong></p>
@@ -86,7 +87,8 @@
 				<p class="half-width">{{x.relationship}}</p>
 				<p class="full-width msg">{{x.msg}}</p>
 			</div>
-
+			
+		{% endif %}
 		{% endfor %}
 
 	</div>
