@@ -2,5 +2,26 @@
 {% block title %}Brandon Miller | Admin{% endblock %}
 {% set active_page = "admin" %}
 {% block content %}
+<div class="page-header">
+	<h1 class="full-width">Admin</h1>
+	<p class="full-width">Login to gain access to the rest of the admin.</p>
+</div>
 
+<div class="container">
+	<div class="section narrow pad">
+		<div class="section narrow pad">
+			<div class="section narrow pad">
+				<form class="full-width" action="" method="POST">
+					<label>Username:</label>
+					<input type="text" name="username">
+					<label>Password:</label>
+					<input type="password" name="password">
+					<div class="full-width center">
+						<input class="btn-form" type="submit" name="Submit" value="Login">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock %}

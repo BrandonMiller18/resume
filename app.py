@@ -1,7 +1,7 @@
 import os
 import smtplib
 from flask import Flask, redirect, url_for, render_template, send_file, request, session, make_response, flash
-# from flask_mail import Mail, Message
+from flask_login import LoginManager, UserMixin, login_user, login_required
 from flask_sqlalchemy import SQLAlchemy
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
@@ -12,6 +12,25 @@ app.config.from_pyfile('config.py')
 
 mail = Mail(app)
 db = SQLAlchemy(app)
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+class admin_user_table(UserMixin, db.Model):
+	id = db.Column("id", db.Integer, primary_key=True)
+	username = db.Column(db.String(25), unique=True)
+	password = db.Column(db.String(25))
+
+	# def __init__(self, username, password):
+	# 	self.username = username
+	# 	self.password = password
+
+	# def __repr__(self):
+	# 	return '<admin_users %r>' % self.username, self.password
+
+@login_manager.user_loader
+def load_user(user_id):
+	return admin_user_table.query.get(int(user_id))
 
 class references(db.Model):
 	# create model (table), "references" in SQLite db using SQLAlchemy
@@ -149,20 +168,6 @@ def reference():
 		except Exception as e:
 			print(e.msg)
 
-		# # send email via Flask-Mail
-		# # notify me I recieved a reference
-		# msg = Message(
-		# 	subject = 'New Reference!',
-		# 	recipients = ['blmiller0809@gmail.com'], # replace with evironment variable on prod
-		# 	reply_to = form_email,
-		# 	)
-
-		# msg.html = f"""<p>You recieved a reference from <strong>{fname} {lname}!</strong></p>
-		# 			<p><strong>Email: </strong>{form_email}</p>
-		# 			<p><strong>Msg:</strong> {form_msg}</p>"""
-
-		# mail.send(msg)
-
 		# flash thank you message
 		flash("Thank you! Your reference has been submitted.", "success")
 	
@@ -206,22 +211,6 @@ def contact():
 		except Exception as e:
 			print(e.msg)
 
-
-		# # send email via Flask-Mail
-		# msg = Message( # create message to send via flask_mail 
-		# 	subject=sbj,
-		# 	recipients=['blmiller0809@gmail.com'], # recipients = [list]
-		# 	reply_to=form_email
-		# 	)
-		
-
-		# # html format for email
-		# msg.html = f"""<p><strong>Message From: </strong>{fname} {lname}</p>
-		# 			<p><strong>Company: </strong>{company}</p>
-		# 			<p>{form_msg}</p>"""
-		
-		# mail.send(msg)
-
 		# set first name as cookie to identify user upon return to site
 		res = make_response(redirect(url_for("thank_you")))
 		res.set_cookie(
@@ -257,19 +246,51 @@ def not_found(self):
     """Page not found."""
     return make_response(render_template("404.html"), 404)
 
+
+
+
+
+
+
 # admin routes
 
-@app.route("/admin/index")
+@app.route("/admin/index", methods=["GET", "POST"])
 def admin_home():
-	return render_template("admin/index.html")
+	if request.method == "POST":
+		"""insert logic for logging in to admin
+		probably need to use Flask-Admin or something
+		like that for this."""
+		username = request.form["username"]
+		password = request.form["password"]
+		user = admin_user_table.query.filter_by(username=username, password=password).first()
+
+		if user:
+			login_user(user)
+			flash("Logged In!", "success")
+			return render_template("admin/home.html")
+		else:
+			flash("Unable to login.", "error")
+			return render_template("admin/index.html")
+	else:
+		return render_template("admin/index.html")
+
+@app.route("/admin/users")
+@login_required
+def admin_users():
+	return render_template("admin/admin_users.html",
+		users=admin_user_table.query.all(),
+		)
+
 
 @app.route("/admin/references")
+@login_required
 def admin_references():
 	return render_template("admin/admin_references.html",
 		references=references.query.all(),
 		)
 
 @app.route("/admin/references/approve")
+@login_required
 def update_record():
 	ref_id = request.args.get("ref_id")
 	if ref_id:
@@ -283,6 +304,7 @@ def update_record():
 		)
 
 @app.route("/admin/references/delete")
+@login_required
 def delete_record():
 	ref_id = request.args.get("ref_id")
 	if ref_id:

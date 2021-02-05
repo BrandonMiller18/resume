@@ -24,17 +24,30 @@
 
 <nav>
 	<a class="home" href="/admin/index" title="">Admin Home</a>
-
+	{% if current_user.is_authenticated %} <!-- checks for logged in -->
 	<div id="hide">
 		<a class="navitem {{'active' if active_page == 'ref_table'}}" href="{{ url_for('admin_references') }}" title="">Ref Table</a>
-		<a class="navitem nav-contact" href="/">Front End</a>
+		<a class="navitem {{'active' if active_page == 'user_table'}}" href="{{ url_for('admin_users') }}" title="">Admin Users</a>
+		<a class="navitem nav-contact" href="/" target="_blank">Front End</a>
 	</div>
+	{% endif %}
 	<a class="icon" href="javascript:void(0);" onclick="myFunction()" aria-label="mobile navigation">
 			<i class="fa fa-bars"></i>
 	</a>
+
 </nav>
 
 <body>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for category, message in messages %}
+      <div class="{{ category }}"><p>{{ message }}</p></div>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
 
 {% block content %}{% endblock %}
 

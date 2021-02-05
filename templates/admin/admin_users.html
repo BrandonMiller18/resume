@@ -1,0 +1,41 @@
+{% extends "admin/admin_base.html" %}
+{% block title %}Brandon Miller | Admin{% endblock %}
+{% set active_page = "user_table" %}
+{% block content %}
+
+
+<div class="page-header">
+	<h1 class="full-width">References</h1>
+	<p class="full-width">Approve or delete references from the reference table. Desktop only.</p>
+</div>
+
+<div class="container">
+	<div class="section">
+		<table class="full-width pad">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Username</th>
+					<th>Password</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for x in users %}
+				<tr>
+					<td>{{x.id}}</td>
+					<td>{{x.username}}</td>
+					<td>{{x.password}}</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+
+	</div>
+</div>
+
+
+
+
+
+
+{% endblock %}
