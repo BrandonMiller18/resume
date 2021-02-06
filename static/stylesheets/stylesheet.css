@@ -351,7 +351,7 @@ footer.container {
 
 .home__img {
 	height: 200px;
-	background-color: #0288d120;
+	background-color: #fff;
 	border-radius: 10px;
 }
 
@@ -361,6 +361,24 @@ footer.container {
 
 .home__img:nth-child(4n+1) {
 	grid-column: 1 / span 4;
+}
+
+.about__me {
+	background-image: url("../images/ecenter.png");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.about__site {
+	background-image: url("../images/flask_logo.png");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.about__update {
+	background-image: url("../images/battlestation.png");
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 .home__title {
@@ -833,6 +851,10 @@ table, th, td {
 	width: 100%;
 	position: relative;
 	bottom: 0px;
+}
+
+.hidetext {
+	-webkit-text-security: disc;
 }
 
 

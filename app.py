@@ -21,12 +21,12 @@ class admin_user_table(UserMixin, db.Model):
 	username = db.Column(db.String(25), unique=True)
 	password = db.Column(db.String(25))
 
-	# def __init__(self, username, password):
-	# 	self.username = username
-	# 	self.password = password
+	def __init__(self, username, password):
+		self.username = username
+		self.password = password
 
-	# def __repr__(self):
-	# 	return '<admin_users %r>' % self.username, self.password
+	def __repr__(self):
+		return '<admin_users %r>' % self.username, self.password
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -246,12 +246,12 @@ def not_found(self):
     """Page not found."""
     return make_response(render_template("404.html"), 404)
 
-
-
-
-
-
-
+# admin routes
+# admin routes
+# admin routes
+# admin routes
+# admin routes
+# admin routes
 # admin routes
 
 @app.route("/admin/index", methods=["GET", "POST"])
