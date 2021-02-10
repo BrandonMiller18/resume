@@ -1,0 +1,65 @@
+{% extends "admin/admin_base.html" %}
+{% block title %}Brandon Miller | Admin{% endblock %}
+{% set active_page = "admin_portfolio" %}
+{% block content %}
+
+<div class="page-header">
+	<h1 class="full-width">Projects</h1>
+	<p class="full-width">Add and update projects. Set the CSS class, then set the appropriate background image to that class in the stylesheet. Set active to True to display on the front end.</p>
+</div>
+
+<div class="container">
+
+
+	<div class="section narrow pad">
+		<form class="form full-width section" name="contactme" action="" method="POST" accept-charset="utf-8">
+			<div class="full-width">
+				<label for="proj_title">Project Title: </label>
+				<input id="proj_title" type="text" name="proj_title" required>
+			</div>
+			<div class="full-width">
+				<label for="class">CSS Class: </label>
+				<input id="class" type="text" name="class" required>
+			</div>
+			<div class="full-width">
+				<label for="proj_desc">Project Description: </label>
+				<textarea id="proj_desc" class="msg" type="text" name="proj_desc" required></textarea>
+			</div>
+			<div class="full-width center">
+				<input class="btn-form" type="submit" name="submit" value="Submit">
+			</div>
+		</form>
+	</div>
+
+
+	<div class="section">
+		<table class="full-width pad">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Project Title</th>
+					<th>Project Description</th>
+					<th>CSS Class</th>
+					<th>Active?</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for x in projects %}
+				<tr>
+					<td>{{x._id}}</td>
+					<td>{{x.proj_title}}</td>
+					<td>{{x.proj_desc}}</td>
+					<td>{{x.css_class}}</td>
+					<td>{{x.active}}</td>
+					<td class="no_border center"><a href="{{ url_for('enable_project', proj_id=x._id) }}"><button class="admin__btn"><i class="fa fa-check" aria-hidden="true"></i></button></a></td>
+					<td class="no_border center"><a href="{{ url_for('disable_project', proj_id=x._id) }}"><button class="admin__btn"><i class="fa fa-minus-square" aria-hidden="true"></i></button></a></td>
+					<td class="no_border center"><a href=""><button class="admin__btn"><i class="fa fa-pencil-square" aria-hidden="true"></i></button></a></td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+
+	</div>
+</div>
+
+{% endblock %}

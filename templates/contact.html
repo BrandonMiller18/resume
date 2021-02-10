@@ -15,15 +15,15 @@
 		<form class="form full-width section" name="contactme" action="" method="POST" accept-charset="utf-8">
 			<div class="half-width fname">
 				<label for="fname">First name: </label>
-				<input id="fname" type="text" name="fname">
+				<input id="fname" type="text" name="fname" required>
 			</div>
 			<div class="half-width lname">
 				<label for="lname">Last name: </label>
-				<input id="lname" type="text" name="lname">
+				<input id="lname" type="text" name="lname" required>
 			</div>
 			<div class="half-width fname">
 				<label for="email">Email: </label>
-				<input id="email" type="text" name="email">
+				<input id="email" type="text" name="email" required>
 			</div>
 			<div class="half-width lname">
 				<label for="company">Company: </label>
@@ -31,11 +31,11 @@
 			</div>
 			<div class="full-width">
 				<label for="sbj">Subject: </label>
-				<input id="sbj" type="text" name="sbj">
+				<input id="sbj" type="text" name="sbj" required>
 			</div>
 			<div class="full-width">
 				<label for="msg">Message: </label>
-				<textarea id="msg" class="msg" type="text" name="msg" value=""></textarea>
+				<textarea id="msg" class="msg" type="text" name="msg" value="" required></textarea>
 			</div>
 			<div class="full-width center">
 				<input class="btn-form" type="submit" name="submit" value="Submit">

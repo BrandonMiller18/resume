@@ -24,13 +24,16 @@
 
 <nav>
 	<a class="home" href="/admin/index" title="">Admin Home</a>
-	{% if current_user.is_authenticated %} <!-- checks for logged in -->
 	<div id="hide">
-		<a class="navitem {{'active' if active_page == 'ref_table'}}" href="{{ url_for('admin_references') }}" title="">Ref Table</a>
+	{% if current_user.is_authenticated %} <!-- checks for logged in -->
+		<a class="navitem {{'active' if active_page == 'ref_table'}}" href="{{ url_for('admin_references') }}" title="">References</a>
+		<a class="navitem {{'active' if active_page == 'admin_portfolio'}}" href="{{ url_for('admin_portfolio') }}" title="">Portfolio</a>
+		<a class="navitem {{'active' if active_page == 'hobby_table'}}" href="{{ url_for('admin_hobby') }}" title="">About Me</a>
 		<a class="navitem {{'active' if active_page == 'user_table'}}" href="{{ url_for('admin_users') }}" title="">Admin Users</a>
-		<a class="navitem nav-contact" href="/" target="_blank">Front End</a>
-	</div>
+		<a class="navitem nav-contact logout" href="{{ url_for('logout') }}" target="">Logout</a>
 	{% endif %}
+		<a class="navitem nav-contact admin" href="/" target="_blank">Front End</a>
+	</div>
 	<a class="icon" href="javascript:void(0);" onclick="myFunction()" aria-label="mobile navigation">
 			<i class="fa fa-bars"></i>
 	</a>

@@ -12,50 +12,62 @@
 			<p class="full-width narrow" style="text-align: left;">My name is Brandon Miller. I was born and raised in Hazelwood, MO - a suburb in North St. Louis County. This isn't a Tinder profile, but if you're curious about my personal life and hobbies, continue reading...</p>
 		</div>
 
+		<p class="mobile center full-width"><strong>Click each block to learn more</strong></p>
+		<p class="desktop center full-width"><strong>Hover over each block to learn more</strong></p>
+
+		
 		<div class="section narrow pad">
-
-
 			<h2 class="full-width">Hobbies</h2>
-			
-			<div class="section hobby pc">
-
+		{% for x in hobbies %}
+			{% if x.category == "Hobby" %}
+			{% if x.active == True %}
+			<div class="section hobby {{x.css_class}}">
+				<div class="full-width item__name">
+					<h2>{{x.hobby_title}}</h2>				
+				</div>
+				<div class="full-width item__description">
+					<p>{{x.hobby_desc}}</p>
+				</div>
 			</div>
-
-			<div class="section hobby pc">
-				
-			</div>
-
-
+			{% endif %}
+			{% endif %}
+		{% endfor %}
 		</div>
-
+		
 		<div class="section narrow pad">
 			<h2 class="full-width">Interests</h2>
-			<div class="section hobby pc">
-					
+		{% for x in hobbies %}
+			{% if x.category == "Interest" %}
+			{% if x.active == True %}
+			<div class="section hobby {{x.css_class}}">
+				<div class="full-width item__name">
+					<h2>{{x.hobby_title}}</h2>				
+				</div>
+				<div class="full-width item__description">
+					<p>{{x.hobby_desc}}</p>
+				</div>
 			</div>
-			<div class="section hobby pc">
-				
-			</div>
+			{% endif %}
+			{% endif %}
+		{% endfor %}
 		</div>
 
 		<div class="section narrow pad">
 			<h2 class="full-width">Sports</h2>
-			<div class="section hobby lu-bsb">
-				<p class="watermark">@55Justincoleman</p>
+		{% for x in hobbies %}
+			{% if x.category == "Sports" %}
+			{% if x.active == True %}
+			<div class="section hobby {{x.css_class}}">
+				<div class="full-width item__name">
+					<h2>{{x.hobby_title}}</h2>				
+				</div>
+				<div class="full-width item__description">
+					<p>{{x.hobby_desc}}</p>
+				</div>
 			</div>
-			<div class="section hobby pc">
-				
-			</div>
-		</div>
-
-		<div class="section narrow pad">
-			<h2 class="full-width">Lorem Ipsum</h2>
-			<div class="section hobby pc">
-					
-			</div>
-			<div class="section hobby pc">
-				
-			</div>
+			{% endif %}
+			{% endif %}
+		{% endfor %}
 		</div>
 
 

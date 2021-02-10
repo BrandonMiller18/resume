@@ -1,7 +1,7 @@
 import os
 import smtplib
 from flask import Flask, redirect, url_for, render_template, send_file, request, session, make_response, flash
-from flask_login import LoginManager, UserMixin, login_user, login_required
+from flask_login import LoginManager, UserMixin, login_user, login_required, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
@@ -15,6 +15,8 @@ db = SQLAlchemy(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
+login_manager.login_view = "admin_home"
+login_manager.login_message_category = "error"
 
 class admin_user_table(UserMixin, db.Model):
 	id = db.Column("id", db.Integer, primary_key=True)
@@ -28,9 +30,11 @@ class admin_user_table(UserMixin, db.Model):
 	def __repr__(self):
 		return '<admin_users %r>' % self.username, self.password
 
+
 @login_manager.user_loader
 def load_user(user_id):
 	return admin_user_table.query.get(int(user_id))
+
 
 class references(db.Model):
 	# create model (table), "references" in SQLite db using SQLAlchemy
@@ -61,6 +65,49 @@ class references(db.Model):
 		self.msg,
 		self.approved
 
+
+class portfolio_table(db.Model):
+	_id = db.Column("id", db.Integer, primary_key=True)
+	proj_title = db.Column(db.String(100))
+	css_class = db.Column(db.String(100))
+	proj_desc = db.Column(db.Text)
+	active = db.Column(db.Boolean)
+
+	def __init__(self, proj_title, css_class, proj_desc, active):
+		self.proj_title = proj_title
+		self.css_class = css_class
+		self.proj_desc = proj_desc
+		self.active = active
+
+	def __repr__(self):
+		return '<portfolio %r>' % self.proj_title,
+		self.css_class,
+		self.proj_desc,
+		self.active
+
+
+class hobby_table(db.Model):
+	_id = db.Column("id", db.Integer, primary_key=True)
+	hobby_title = db.Column(db.String(100))
+	category = db.Column(db.String(100))
+	css_class = db.Column(db.String(100))
+	hobby_desc = db.Column(db.Text)
+	active = db.Column(db.Boolean)
+
+	def __init__(self, hobby_title, category, css_class, hobby_desc, active):
+		self.hobby_title = hobby_title
+		self.category = category
+		self.css_class = css_class
+		self.hobby_desc = hobby_desc
+		self.active = active
+
+	def __repr__(self):
+		return '<portfolio %r>' % self.hobby_title,
+		self.category,
+		self.css_class,
+		self.hobby_desc,
+		self.active
+
 db.create_all()
 
 # create pages
@@ -87,12 +134,14 @@ def return_resume():
 		attachment_filename="Brandon_Miller_Resume.pdf",
 		)
 
+
 @app.route("/directmail-kit/")
 def return_dmkit():
 	return send_file(
 		"static/downloads/coa.zip",
 		as_attachment=True,
 		attachment_filename="CoA_DM_Kit.zip")
+
 
 @app.route("/automation_example/")
 def return_automation():
@@ -102,6 +151,7 @@ def return_automation():
 		attachment_filename="python_automation.gif",
 		)
 
+
 @app.route("/pwm-download/")
 def return_pwm():
 	return send_file("static/downloads/pwm.zip",
@@ -109,19 +159,24 @@ def return_pwm():
 		attachment_filename="pwm.zip",
 		)
 
+
 # END DOWNLOADS
+
 
 @app.route("/resume")
 def resume():
 	return render_template("resume.html")
 
+
 @app.route("/portfolio")
 def portfolio():
-	return render_template("portfolio.html")
+	return render_template("portfolio.html", projects=portfolio_table.query.all())
+
 
 @app.route("/portfolio/more-info")
 def more_info():
 	return render_template("moreinfo.html")
+
 
 @app.route("/references", methods=["POST", "GET"])
 def reference():
@@ -176,7 +231,7 @@ def reference():
 
 @app.route("/about")
 def about_me():
-	return render_template("about.html")
+	return render_template("about.html", hobbies=hobby_table.query.all())
 
 
 @app.route("/contact", methods=["POST", "GET"])
@@ -199,6 +254,7 @@ def contact():
 			to_emails='blmiller0809@gmail.com',
 			subject=sbj,
 			html_content=f"""<p><strong>Message From: </strong>{fname} {lname}</p>
+		 			<p><strong>Email: </strong>{form_email}</p>
 		 			<p><strong>Company: </strong>{company}</p>
 		 			<p>{form_msg}</p>""")
 
@@ -241,6 +297,7 @@ def thank_you():
 	else:
 		return "error"
 
+
 @app.errorhandler(404)
 def not_found(self):
     """Page not found."""
@@ -254,25 +311,42 @@ def not_found(self):
 # admin routes
 # admin routes
 
+@app.route("/admin/")
+def admin_base():
+	return redirect(url_for("admin_home"))
+
+
 @app.route("/admin/index", methods=["GET", "POST"])
 def admin_home():
 	if request.method == "POST":
-		"""insert logic for logging in to admin
-		probably need to use Flask-Admin or something
-		like that for this."""
 		username = request.form["username"]
 		password = request.form["password"]
 		user = admin_user_table.query.filter_by(username=username, password=password).first()
 
 		if user:
-			login_user(user)
+			login_user(user, remember=True)
 			flash("Logged In!", "success")
 			return render_template("admin/home.html")
 		else:
 			flash("Unable to login.", "error")
-			return render_template("admin/index.html")
-	else:
-		return render_template("admin/index.html")
+			return render_template("admin/login.html")
+
+	if request.method == "GET":
+		if current_user.is_authenticated:
+			"""render admin home page"""
+			return render_template("admin/home.html")	
+		else:
+			"""render admin login page"""
+			return render_template("admin/login.html")
+
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    flash("Logged out!", "success")
+    return redirect("/admin/index")
+
 
 @app.route("/admin/users")
 @login_required
@@ -289,9 +363,10 @@ def admin_references():
 		references=references.query.all(),
 		)
 
+
 @app.route("/admin/references/approve")
 @login_required
-def update_record():
+def approve_reference():
 	ref_id = request.args.get("ref_id")
 	if ref_id:
 		ref_id = float(ref_id)
@@ -299,9 +374,21 @@ def update_record():
 		x.approved = True
 		db.session.commit()
 
-	return render_template("admin/admin_references.html",
-		references=references.query.all(),
-		)
+	return redirect(url_for("admin_references"))
+
+
+@app.route("/admin/references/disable")
+@login_required
+def disable_reference():
+	ref_id = request.args.get("ref_id")
+	if ref_id:
+		ref_id = float(ref_id)
+		x = references.query.get(ref_id)
+		x.approved = False
+		db.session.commit()
+
+	return redirect(url_for("admin_references"))
+
 
 @app.route("/admin/references/delete")
 @login_required
@@ -313,9 +400,95 @@ def delete_record():
 		db.session.delete(x)
 		db.session.commit()
 
-	return render_template("admin/admin_references.html",
-		references=references.query.all(),
+	return redirect(url_for("admin_references"))
+
+
+@app.route("/admin/portfolio", methods=['GET', 'POST'])
+@login_required
+def admin_portfolio():
+	if request.method == 'POST':
+		proj_title = request.form["proj_title"]
+		css_class = request.form["class"]
+		proj_desc = request.form["proj_desc"]
+		active = False
+
+		# write data to refrences database
+		project = portfolio_table(proj_title,
+			css_class, proj_desc, active)
+		db.session.add(project)
+		db.session.commit()
+
+	return render_template("admin/admin_portfolio.html",
+		projects=portfolio_table.query.all(),
 		)
+
+
+@app.route("/admin/portfolio/enable", methods=['GET', 'POST'])
+@login_required
+def enable_project():
+	proj_id = request.args.get("proj_id")
+	if proj_id:
+		x = portfolio_table.query.get(proj_id)
+		x.active = True
+		db.session.commit()
+
+	return redirect(url_for("admin_portfolio"))
+
+
+@app.route("/admin/portfolio/disable", methods=['GET', 'POST'])
+@login_required
+def disable_project():
+	proj_id = request.args.get("proj_id")
+	if proj_id:
+		x = portfolio_table.query.get(proj_id)
+		x.active = False
+		db.session.commit()
+
+	return redirect(url_for("admin_portfolio"))
+
+
+@app.route("/admin/hobby", methods=['GET', 'POST'])
+@login_required
+def admin_hobby():
+	if request.method == 'POST':
+		hobby_title = request.form["hobby_title"]
+		category = request.form["category"]
+		css_class = request.form["class"]
+		hobby_desc = request.form["hobby_desc"]
+		active = False
+
+		# write data to hobby database
+		hobby = hobby_table(hobby_title, category, css_class, hobby_desc, active)
+		db.session.add(hobby)
+		db.session.commit()
+
+	return render_template("admin/admin_hobby.html",
+		hobbies=hobby_table.query.all(),
+		)
+
+
+@app.route("/admin/hobby/enable", methods=['GET', 'POST'])
+@login_required
+def enable_hobby():
+	hobby_id = request.args.get("hobby_id")
+	if hobby_id:
+		x = hobby_table.query.get(hobby_id)
+		x.active = True
+		db.session.commit()
+
+	return redirect(url_for("admin_hobby"))
+
+
+@app.route("/admin/hobby/disable", methods=['GET', 'POST'])
+@login_required
+def disable_hobby():
+	hobby_id = request.args.get("hobby_id")
+	if hobby_id:
+		x = hobby_table.query.get(hobby_id)
+		x.active = False
+		db.session.commit()
+
+	return redirect(url_for("admin_hobby"))
 
 
 

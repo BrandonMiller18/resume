@@ -644,8 +644,6 @@ footer.container {
 	transition: all .3s ease 0s;
 }
 
-.msg {font-style: italic;}
-
 /*END REFERENCE PAGE*/
 
 /*BEGIN PORTFOLIO PAGE*/
@@ -684,35 +682,47 @@ footer.container {
 .hdis {background-image: url("../images/hdis_proj.png");}
 
 
-.pname, .pdescription {
+.item__name, .item__description {
 	visibility: hidden;
 	border-radius: 25px;
-	color: #ffffff;
+	background-color: #00000000;
+	color: #00000000;
+	transition: all 1.5s ease 0s;
 }
 
-.project:hover .pname {
-	visibility: visible;
-	border-radius: 25px 25px 0 0;
-	background-color: #00000080;
+.item__name {
 	text-align: center;
 	height: auto;
 	grid-row: span 1;
 	padding-top: 5px;
-	transition: all 0.5s linear 0s;
 }
 
-.project:hover .pdescription {
+.item__description {
+	grid-row: 3 / span 1;
+} 
+
+.project:hover .item__name {
+	visibility: visible;
+	border-radius: 25px 25px 0 0;
+	background-color: #00000080;
+	color: #ffffff;
+	text-align: center;
+	height: auto;
+	grid-row: span 1;
+	padding-top: 5px;
+	transition: all 0.5s ease 0s;
+}
+
+.project:hover .item__description {
 	visibility: visible;
 	border-radius: 0 0 25px 25px;
 	grid-row: 3 / span 1;
 	background-color: #00000080;
 	color: #ffffff;
-	transition: all 0.5s linear 0s;
+	transition: all 0.5s ease 0s;
 }
 
-.pdescription p {margin: 10px;}
-.pdescription a {color: #ffffff;}
-.pdescription a:hover {color: #417fcf;}
+.item__description p {margin: 10px;}
 
 /*END PORTFOLIO PAGE*/
 
@@ -745,8 +755,51 @@ footer.container {
 	padding: 0;
 }
 
+.item__name, .item__description {
+	visibility: hidden;
+	border-radius: 25px;
+	background-color: #00000000;
+	color: #00000000;
+	transition: all 1.5s ease 0s;
+}
+
+.item__name {
+	text-align: center;
+	height: auto;
+	grid-row: span 1;
+	padding-top: 5px;
+}
+
+.item__description {
+	grid-row: 3 / span 1;
+} 
+
+.hobby:hover .item__name {
+	visibility: visible;
+	border-radius: 25px 25px 0 0;
+	background-color: #00000080;
+	color: #ffffff;
+	text-align: center;
+	height: auto;
+	grid-row: span 1;
+	padding-top: 5px;
+	transition: all 0.5s ease 0s;
+}
+
+.hobby:hover .item__description {
+	visibility: visible;
+	border-radius: 0 0 25px 25px;
+	grid-row: 3 / span 1;
+	background-color: #00000080;
+	color: #ffffff;
+	transition: all 0.5s ease 0s;
+}
+
+.item__description p {margin: 10px;}
+
 .pc {background-image: url("../images/pc_hob.png");}
-.lu-bsb {background-image: url("../images/lubsb_hob.png");}
+.lu {background-image: url("../images/lubsb_hob.png");}
+
 
 
 .watermark {
@@ -840,6 +893,25 @@ table, th, td {
 	color: white;
 	transition: all 0.3s ease 0s;
 	cursor: pointer;
+}
+
+nav a.nav-contact.logout {
+	background-color: #a94442;
+
+}
+
+nav a.nav-contact.admin {
+	margin: 9px 2%;
+
+}
+
+nav a.nav-contact.logout:hover {
+	background-color: #f2dede;
+	color: #000;
+}
+
+.admin__login {
+	min-height: 69.7vh;
 }
 
 /*THANK YOU CALLOUT*/
@@ -1000,7 +1072,7 @@ table, th, td {
 	}
 
 	.section-title {
-		padding: 2px 0 8px 0;
+		padding: 8px 0;
 	}
 
 	.company, .duration, .website {

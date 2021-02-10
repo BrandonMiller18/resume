@@ -1,0 +1,76 @@
+{% extends "admin/admin_base.html" %}
+{% block title %}Brandon Miller | Admin{% endblock %}
+{% set active_page = "hobby_table" %}
+{% block content %}
+
+<div class="page-header">
+	<h1 class="full-width">Projects</h1>
+	<p class="full-width">Add and update projects. Set the CSS class, then set the appropriate background image to that class in the stylesheet. Set active to True to display on the front end.</p>
+</div>
+
+<div class="container">
+
+
+	<div class="section narrow pad">
+		<form class="form full-width section" name="contactme" action="" method="POST" accept-charset="utf-8">
+			<div class="full-width">
+				<label for="hobby_title">Hobby Title: </label>
+				<input id="hobby_title" type="text" name="hobby_title" required>
+			</div>
+			<div class="full-width">
+				<label for="category">Category: </label>
+				<select id="category" type="text" name="category" required>
+					<option value="">Choose one...</option>
+					<option value="Sports">Sports</option>
+					<option value="Interest">Interest</option>
+					<option value="Hobby">Hobby</option>
+				</select>
+			</div>
+			<div class="full-width">
+				<label for="class">CSS Class: </label>
+				<input id="class" type="text" name="class" required>
+			</div>
+			<div class="full-width">
+				<label for="hobby_desc">Hobby Description: </label>
+				<textarea id="hobby_desc" class="msg" type="text" name="hobby_desc" required></textarea>
+			</div>
+			<div class="full-width center">
+				<input class="btn-form" type="submit" name="submit" value="Submit">
+			</div>
+		</form>
+	</div>
+
+
+	<div class="section">
+		<table class="full-width pad">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Hobby Title</th>
+					<th>Cateogry</th>
+					<th>Hobby Description</th>
+					<th>CSS Class</th>
+					<th>Active?</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for x in hobbies %}
+				<tr>
+					<td>{{x._id}}</td>
+					<td>{{x.hobby_title}}</td>
+					<td>{{x.category}}</td>
+					<td>{{x.hobby_desc}}</td>
+					<td>{{x.css_class}}</td>
+					<td>{{x.active}}</td>
+					<td class="no_border center"><a href="{{ url_for('enable_hobby', hobby_id=x._id) }}"><button class="admin__btn"><i class="fa fa-check" aria-hidden="true"></i></button></a></td>
+					<td class="no_border center"><a href="{{ url_for('disable_hobby', hobby_id=x._id) }}"><button class="admin__btn"><i class="fa fa-minus-square" aria-hidden="true"></i></button></a></td>
+					<td class="no_border center"><a href=""><button class="admin__btn"><i class="fa fa-pencil-square" aria-hidden="true"></i></button></a></td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+
+	</div>
+</div>
+
+{% endblock %}

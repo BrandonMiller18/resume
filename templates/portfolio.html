@@ -14,61 +14,22 @@
 
 <!-- START PROJECTS -->
 
-		<div class="section project scrape">
-			<div class="full-width pname">
-				<h2>eCommerce Web Scraper</h2>				
-			</div>
-			<div class="full-width pdescription">
-				<p>Created a web scraper using Python3 and the Beautiful Soup library. The scraper crawls a website and writes product information (name, price, description) to a .csv file for review.</p>
-			</div>
-		</div>
-
-		<div class="section project auto">
-			<div class="full-width pname">
-				<h2>Automation with Python</h2>				
-			</div>
-			<div class="full-width pdescription">
-				<p>Created a script in Python to automate a monthly task of entering promo codes into the backend of our Magento store. This saved me ~2 hours of monotenous work every month!</p>
-			</div>
-		</div>
-
-		<div class="section project sg">
-			<div class="full-width pname">
-				<h2>eCommerce Brand</h2>				
-			</div>
-			<div class="full-width pdescription">
-				<p>Led the launch of a new eCommerce brand. Managed timelines, agency partners, and internal stakeholders to complete the development, integration, and launch of <a href="https://www.sofiaandgrace.com" title="">Sofia & Grace</a></p>
-			</div>
-		</div>
-
-		<div class="section project pwm">
-			<div class="full-width pname">
-				<h2>Password Manager</h2>				
-			</div>
-			<div class="full-width pdescription">
-				<p>Created a password manager app from scratch using Python3 and the Tkinter GUI API. The app creates MySQL records and can add, read, delete one, and delete all records from the database.</p>
-			</div>
-		</div>
-
-
-		<div class="section project coa">
-			<div class="full-width pname">
-				<h2>Direct Mail Kit</h2>				
-			</div>
-			<div class="full-width pdescription">
-				<p>Created a new direct mail kit which outperformed the longstanding "control" creative. Worked with Coming of Age to create the kit.</p>
-			</div>
-		</div>
-		
-		<div class="section project hdis">
-			<div class="full-width pname">
-				<h2>Magento 2 Landing Pages</h2>				
-			</div>
-			<div class="full-width pdescription">
-				<p>Build landing pages in Magento 2 to support marketing activities and provide a clean, seamless user experience.</p>
-			</div>
-		</div>
+{% for x in projects %}
+{% if x.active == True %}
 	
+	<div class="section project {{x.css_class}}">
+			<div class="full-width item__name">
+				<h2>{{x.proj_title}}</h2>				
+			</div>
+			<div class="full-width item__description">
+				<p>{{x.proj_desc}}</p>
+			</div>
+	</div>
+
+
+{% endif %}
+{% endfor %}
+
 <!-- END PROJECTS -->
 
 		<div class="half-width center pad">

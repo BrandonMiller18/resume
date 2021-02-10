@@ -33,7 +33,8 @@
 					<td>{{x.relationship}}</td>
 					<td>{{x.msg}}</td>
 					<td>{{x.approved}}</td>
-					<td class="no_border center"><a href="{{ url_for('update_record', ref_id=x._id) }}"><button class="admin__btn"><i class="fa fa-check" aria-hidden="true"></i></button></a></td>
+					<td class="no_border center"><a href="{{ url_for('approve_reference', ref_id=x._id) }}"><button class="admin__btn"><i class="fa fa-check" aria-hidden="true"></i></button></a></td>
+					<td class="no_border center"><a href="{{ url_for('disable_reference', ref_id=x._id) }}"><button class="admin__btn"><i class="fa fa-minus-square" aria-hidden="true"></i></button></a></td>
 					<td class="no_border center"><a href="{{ url_for('delete_record', ref_id=x._id) }}"><button class="admin__btn"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a></td>
 				</tr>
 			{% endfor %}
