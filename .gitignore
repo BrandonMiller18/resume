@@ -5,5 +5,8 @@
 # dev environment variables
 .env
 
+# python script for manually editing heroku PostgreSQL db
+heroku_db.py
+
 __pycache__
 venv
