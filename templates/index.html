@@ -13,12 +13,6 @@
 </div>
 
 <!-- <div class="hero">
-
-
-
-
-
-
 	<div class="section narrow pad hero__text">
 		<div class="full-width pad">
 			<p>Welcome to what is probably the millionth iteration of my resume website. If you are reading this, it means I have finally gotten this bad boy to a place where I am happy enough to launch it (I've only owned the domain for over a year...)! Jokes aside, I started this project with one goal: LEARN. Spoiler alert: I have learned a lot!</p>
@@ -26,26 +20,41 @@
 			<p>The site you are viewing now is not a final product, and likely never will be. This is where I learn and experiment. This is my professional classroom. Take a look around...</p>
 		</div>
 	</div>
-
 </div> -->
 
 <div class="container">
-	
-	<div class="section narrow pad home">
-		<div class="home__img about__me"></div>
-		<div class="home__title">
-			<h2>A bit about me.</h2>
-			<p class="home__desc">My name is Brandon Miller. I am born and raised in St. Louis, MO. I played baseball at Lindewnwood University for a few years before blowing my arm out and undergoing Tommy John surgery (twice). I grew up on sports. I bleed blue, as they say, and by my count I have only missed watching four Blues games in the past 3 years. If I had the money, I would buy the building pictured here and live there full time.</p>
+	<div class="section narrow pad">
+		<div class="third-width card">
+			<div class="full-width center head">
+				<h2>NHL Companion</h2>
+			</div>
+			<div class="full-width body">
+				<img src="{{url_for('static', filename='images/hockey.jpg')}}">
+				<p>The NHL Companion is a site I built which allows you to follow your favorite NHL team's game. The app plays your team's goal horn when your team scores. </p>
+				<p>It uses the NHL's public API to retrieve data and is built using Flask as the framework and SocketIO to manage the communication from server to client. The code is available on my GitHub.</p>
+				<p><a href="http://nhlcompanion.herokuapp.com/" target="_blank" title="NHL Companion">Try it now!</a></p>
+			</div>
 		</div>
-		<div class="home__img about__site"></div>
-		<div class="home__title">
-			<h2>About this website.</h2>
-			<p class="home__desc">I built this website as a passion project to learn and demonstrate my skills. The backend of this site is built using the Python webframework called Flask. There is an admin section of this site (that you can't see) which requires a login and allows me to manage various tables in the database. You can leave a reference for me, which I must first approve in the admin, that is stored in a SQL database then displayed on the front end. The site is hosted on Heroku servers.</p>
+		<div class="third-width card">
+			<div class="full-width center head">
+				<h2>Sofia & Grace</h2>
+			</div>
+			<div class="full-width body">
+				<img src="{{url_for('static', filename='images/sg_proj.png')}}">
+				<p>Sofia & Grace is a Magento 2 ecommerce store that I led the development of. The site launched in Q1 2021. The site and brand is focused on destimgatizing urinary incontinence while empowering women to live fuller, healthier lives.</p>
+				<p>The site has many features such as a Perfect Product Quiz, special trial and subscription offers, and much more!</p>
+				<p><a href="https://www.sofiaandgrace.com" target="_blank" title="Sofia & Grace">Check it out!</a></p>
+			</div>
 		</div>
-		<div class="home__img about__update"></div>
-		<div class="home__title">
-			<h2>Updated periodically. Take a look.</h2>
-			<p class="home__desc">As with most websites, this is a continuous work in progress. There are likely some mistakes as I have been going at this solo. I plan to continually work to improve and add features to the site as time goes on. Pictured here is my home office setup. This whole thing was made sitting at that gorgeous spot. Please check back periodically to see what crazy stuff I have come up with!</p>
+		<div class="third-width card">
+			<div class="full-width center head">
+				<h2>About Me</h2>
+			</div>
+			<div class="full-width body">
+				<img src="{{url_for('static', filename='images/me.jpg')}}">
+				<p>My name is Brandon Miller. I currently work as an Ecommerce Manager at HDIS. I was born in Hazelwood, MO and went to college at Lindenwood University.</p>
+				<p>I built this site using the Python Flask webframework and a PostreSQL database. Look around, leave a reference, send me an email.</p>
+			</div>
 		</div>
 	</div>
 
@@ -53,13 +62,13 @@
 
 	<div class="section narrow pad">
 		<div class="third-width center pad">
-			<a href="/contact" title="Contact Me Button">
-				<button class="btn">Contact Me</button>
+			<a href="/references" title="Leave A Reference">
+				<button class="btn">References</button>
 			</a>
 		</div>
 		<div class="third-width center pad">
 			<a href="/portfolio" title="View Portfolio" target="_blank">
-				<button class="btn">View Portfolio</button>
+				<button class="btn">Portfolio</button>
 			</a>
 		</div>
 		<div class="third-width center pad">
@@ -69,9 +78,8 @@
 		</div>
 	</div>
 
-	<hr style="width: 75%;">
+	<!-- <hr style="width: 75%;">
 	
-
 	{% if references %}
 	<h2 class="full-width pad center">Real References</h2>
 	<p class="full-width pad narrow center">References are stored in a Postgres SQL database. Please consider leaving a reference below.</p>
@@ -102,7 +110,7 @@
 		<a class="full-width pad" href="/references" title="Leave a Reference">
 			<button class="btn">Leave a Reference</button>
 		</a>
-	</div>
+	</div> -->
 
 </div>
 

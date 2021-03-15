@@ -8,7 +8,7 @@
 	<p class="full-width">Add and update projects. Set the CSS class, then set the appropriate background image to that class in the stylesheet. Set active to True to display on the front end.</p>
 </div>
 
-<div class="container">
+<div class="container pad admin__login">
 
 
 	<div class="section narrow pad">
@@ -17,30 +17,58 @@
 				<label for="proj_title">Project Title: </label>
 				<input id="proj_title" type="text" name="proj_title" required>
 			</div>
-			<div class="full-width">
+			<div class="half-width fname">
 				<label for="class">CSS Class: </label>
 				<input id="class" type="text" name="class" required>
+			</div>
+			<div class="half-width lname">
+				<label for="filename">Image filename: </label>
+				<input id="filename" type="text" name="filename" required>
+			</div>
+			<div class="full-width">
+				<label for="download_path">Download Path: </label>
+				<input id="download_path" type="text" name="download_path">
 			</div>
 			<div class="full-width">
 				<label for="proj_desc">Project Description: </label>
 				<textarea id="proj_desc" class="msg" type="text" name="proj_desc" required></textarea>
 			</div>
+			<div class="full-width">
+				<label for="proj_long_desc">Project Long Description: </label>
+				<textarea id="proj_long_desc" class="msg" type="text" name="proj_long_desc" required></textarea>
+			</div>
 			<div class="full-width center">
 				<input class="btn-form" type="submit" name="submit" value="Submit">
+			</div>
+		</form>
+		
+		<form class="section" action="{{ url_for('upload_image') }}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+			<h2 class="full-width center pad">Upload an Image</h2>
+			<div class="full-width center mauto">
+				<input class="file" type="file" id="file" name="file">	
+			</div>
+			<div class="full-width center">
+				<input class="full-width btn-form" type="submit" name="Upload Image">
 			</div>
 		</form>
 	</div>
 
 
-	<div class="section">
+
+
+
+	<div class="admin section pad">
 		<table class="full-width pad">
 			<thead>
 				<tr>
 					<th>ID</th>
 					<th>Project Title</th>
 					<th>Project Description</th>
+					<th>Long Description</th>
 					<th>CSS Class</th>
-					<th>Active?</th>
+					<th>Filename</th>
+					<th>Download Path</th>
+					<th><i class="fa fa-check" aria-hidden="true"></i></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -49,11 +77,21 @@
 					<td>{{x._id}}</td>
 					<td>{{x.proj_title}}</td>
 					<td>{{x.proj_desc}}</td>
+					<td>{{x.proj_long_desc}}</td>
 					<td>{{x.css_class}}</td>
-					<td>{{x.active}}</td>
+					<td>{{x.filename}}</td>
+					<td>{{x.download_path}}</td>
+					<td class="center">
+						{% if x.active %}
+						<i class="fa fa-check" aria-hidden="true"></i>
+						{% else %}
+						<i class="fa fa-times" aria-hidden="true"></i>
+						{% endif %}
+					</td>
 					<td class="no_border center"><a href="{{ url_for('enable_project', proj_id=x._id) }}"><button class="admin__btn"><i class="fa fa-check" aria-hidden="true"></i></button></a></td>
 					<td class="no_border center"><a href="{{ url_for('disable_project', proj_id=x._id) }}"><button class="admin__btn"><i class="fa fa-minus-square" aria-hidden="true"></i></button></a></td>
 					<td class="no_border center"><a href=""><button class="admin__btn"><i class="fa fa-pencil-square" aria-hidden="true"></i></button></a></td>
+					<td class="no_border center"><a href="{{ url_for('delete_portfolio_record', proj_id=x._id) }}"><button class="admin__btn"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a></td>	
 				</tr>
 			{% endfor %}
 			</tbody>

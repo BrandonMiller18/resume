@@ -11,7 +11,23 @@
 <div class="container">
 	
 	<div class="section pad">
+		{% for x in projects %}
+		{% if x.active == True %}
+		{% if x.proj_title != "More to Come..." %}
 		<div class="half-width section reference">
+			<h2 class="full-width">{{x.proj_title}}</h2>
+			<p class="full-width">{{x.proj_long_desc|safe}}</p>
+			{% if x.download_path %}
+			<a class="full-width" href="{{x.download_path}}"><button class="btn btn__download"><i class="fa fa-download" aria-hidden="true"></i></button></a>
+			{% endif %}
+		</div>
+		{% endif %}
+		{% endif %}
+		{% endfor %}
+
+
+
+		<!-- <div class="half-width section reference">
 			<h2 class="full-width">eCommerce Web Scraper</h2>
 			<p class="full-width">I built a webscraper using Python3 and the Beautiful Soup python library. I began this project with one goal: build something practical using Python. I figured there is nothing more practical than stalking competitor's information. The code in the repository has the specific competitor's address removed as to not make this information public.</p>
 			<p class="full-width">The scraper begins by starting at a page on the competitor's site which contains links to all of their product categories. It then stores those URLs (plp_url) in a list. Then, I loop through the list to find all the product detail page URLs (pdp_url). Then, I loop through those URLs to gather the product metadata and parse through the JSON to get the name, price, and description of each product.</p>
@@ -48,7 +64,7 @@
 			<h2 class="full-width">Direct Mail Kit</h2>
 			<p class="full-width">Lorem ipsum</p>
 			<a class="full-width" href="/directmail-kit/" target="_blank"><button class="btn btn__download"><i class="fa fa-download" aria-hidden="true"></i></button></a>
-		</div>
+		</div> -->
 
 	</div>
 

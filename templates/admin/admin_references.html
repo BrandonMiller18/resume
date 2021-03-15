@@ -9,7 +9,7 @@
 	<p class="full-width">Approve or delete references from the reference table. Desktop only.</p>
 </div>
 
-<div class="container">
+<div class="container pad admin__login">
 	<div class="section">
 		<table class="full-width pad">
 			<thead>
@@ -20,7 +20,7 @@
 					<th>Email</th>
 					<th>Relationship</th>
 					<th>Message</th>
-					<th>Approved?</th>
+					<th><i class="fa fa-check" aria-hidden="true"></i></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -32,7 +32,13 @@
 					<td>{{x.email}}</td>
 					<td>{{x.relationship}}</td>
 					<td>{{x.msg}}</td>
-					<td>{{x.approved}}</td>
+					<td class="center">
+						{% if x.approved %}
+						<i class="fa fa-check" aria-hidden="true"></i>
+						{% else %}
+						<i class="fa fa-times" aria-hidden="true"></i>
+						{% endif %}
+					</td>
 					<td class="no_border center"><a href="{{ url_for('approve_reference', ref_id=x._id) }}"><button class="admin__btn"><i class="fa fa-check" aria-hidden="true"></i></button></a></td>
 					<td class="no_border center"><a href="{{ url_for('disable_reference', ref_id=x._id) }}"><button class="admin__btn"><i class="fa fa-minus-square" aria-hidden="true"></i></button></a></td>
 					<td class="no_border center"><a href="{{ url_for('delete_record', ref_id=x._id) }}"><button class="admin__btn"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a></td>

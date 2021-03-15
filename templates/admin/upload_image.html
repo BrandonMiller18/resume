@@ -1,0 +1,15 @@
+{% extends "admin/admin_base.html" %}
+{% block title %}Brandon Miller | Admin{% endblock %}
+{% set active_page = "upload_image" %}
+{% block content %}
+
+<div class="container">
+	<div class="section narrow pad">
+		<form class="half-width" action="{{ url_for('upload_image') }}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+			<input class="file" type="file" id="file" name="file">
+	  		<input type="submit">
+		</form>
+	</div>
+</div>
+
+{% endblock %}

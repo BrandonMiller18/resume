@@ -5,6 +5,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, cur
 from flask_sqlalchemy import SQLAlchemy
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+from werkzeug.utils import secure_filename
 
 
 app = Flask(__name__)
@@ -70,19 +71,28 @@ class portfolio_table(db.Model):
 	_id = db.Column("id", db.Integer, primary_key=True)
 	proj_title = db.Column(db.String(100))
 	css_class = db.Column(db.String(100))
+	filename = db.Column(db.String(100))
 	proj_desc = db.Column(db.Text)
+	proj_long_desc = db.Column(db.Text)
+	download_path = db.Column(db.Text)
 	active = db.Column(db.Boolean)
 
-	def __init__(self, proj_title, css_class, proj_desc, active):
+	def __init__(self, proj_title, css_class, filename, proj_desc, proj_long_desc, download_path, active):
 		self.proj_title = proj_title
 		self.css_class = css_class
+		self.filename = filename
 		self.proj_desc = proj_desc
+		self.proj_long_desc = proj_long_desc
+		self.download_path = download_path
 		self.active = active
 
 	def __repr__(self):
 		return '<portfolio %r>' % self.proj_title,
 		self.css_class,
+		self.filename,
 		self.proj_desc,
+		self.proj_long_desc,
+		self.download_path,
 		self.active
 
 
@@ -175,7 +185,7 @@ def portfolio():
 
 @app.route("/portfolio/more-info")
 def more_info():
-	return render_template("moreinfo.html")
+	return render_template("moreinfo.html", projects=portfolio_table.query.all())
 
 
 @app.route("/references", methods=["POST", "GET"])
@@ -409,12 +419,15 @@ def admin_portfolio():
 	if request.method == 'POST':
 		proj_title = request.form["proj_title"]
 		css_class = request.form["class"]
+		filename = request.form["filename"]
 		proj_desc = request.form["proj_desc"]
+		proj_long_desc = request.form["proj_long_desc"]
+		download_path = request.form["download_path"]
 		active = False
 
-		# write data to refrences database
+		# write data to portfolio table
 		project = portfolio_table(proj_title,
-			css_class, proj_desc, active)
+			css_class, filename, proj_desc, proj_long_desc, download_path, active)
 		db.session.add(project)
 		db.session.commit()
 
@@ -423,7 +436,9 @@ def admin_portfolio():
 		)
 
 
-@app.route("/admin/portfolio/enable", methods=['GET', 'POST'])
+
+
+@app.route("/admin/portfolio/enable")
 @login_required
 def enable_project():
 	proj_id = request.args.get("proj_id")
@@ -435,7 +450,7 @@ def enable_project():
 	return redirect(url_for("admin_portfolio"))
 
 
-@app.route("/admin/portfolio/disable", methods=['GET', 'POST'])
+@app.route("/admin/portfolio/disable")
 @login_required
 def disable_project():
 	proj_id = request.args.get("proj_id")
@@ -445,6 +460,49 @@ def disable_project():
 		db.session.commit()
 
 	return redirect(url_for("admin_portfolio"))
+
+
+@app.route("/admin/portfolio/delete")
+@login_required
+def delete_portfolio_record():
+	proj_id = request.args.get("proj_id")
+	if proj_id:
+		proj_id = float(proj_id)
+		x = portfolio_table.query.get(proj_id)
+		db.session.delete(x)
+		db.session.commit()
+
+	return redirect(url_for("admin_portfolio"))
+
+
+ALLOWED_EXTENSIONS = {'jpg', 'jpeg', 'png', 'gif'}
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+@app.route("/admin/upload_image", methods=['GET', 'POST'])
+@login_required
+def upload_image():
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        # if user does not select file, browser also
+        # submit an empty part without filename
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(request.url)
+    else:
+    	return render_template("admin/upload_image.html")
 
 
 @app.route("/admin/hobby", methods=['GET', 'POST'])
@@ -467,7 +525,7 @@ def admin_hobby():
 		)
 
 
-@app.route("/admin/hobby/enable", methods=['GET', 'POST'])
+@app.route("/admin/hobby/enable")
 @login_required
 def enable_hobby():
 	hobby_id = request.args.get("hobby_id")
@@ -479,7 +537,7 @@ def enable_hobby():
 	return redirect(url_for("admin_hobby"))
 
 
-@app.route("/admin/hobby/disable", methods=['GET', 'POST'])
+@app.route("/admin/hobby/disable")
 @login_required
 def disable_hobby():
 	hobby_id = request.args.get("hobby_id")

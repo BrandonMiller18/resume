@@ -84,6 +84,7 @@ nav a.navitem {
 
 nav a.nav-contact {
 	background-color: #025C8D; 
+	font-weight: bold;
 	padding: 5px 15px;
 	float: right;
 	border-radius: 15px;
@@ -206,6 +207,10 @@ footer.container {
 	margin: 10px 0;
 }
 
+.mauto {
+	margin: auto;
+}
+
 .page-header {
 	padding-top: 10px;
 	display: grid;
@@ -240,20 +245,23 @@ footer.container {
 	padding: 8px 15px;
 	width: 50%;
 	height: auto;
-	background-color: #025C8D;
-	color: white;
-	border-width: 0px;
+	background-color: #fff;
+	color: #025C8D;
+	border-style: solid;
+	border-color: #025C8D;
+	border-width: 2px;
 	font-weight: bold;
 	font-size: 17px;
-	border-radius: 20px;
+	border-radius: 8px;
 	text-decoration: none;
 	transition: all .7s ease 0s;
 }
 
 .btn:hover {
-	background-color: #025C8D90;
+	background-color: #025C8D;
 	color: white;
-	transition: all 0.3s ease 0s;
+	box-shadow: 0px 0px 8px #025C8D90;
+	transition: all 0.2s ease 0s;
 	cursor: pointer;
 }
 
@@ -264,14 +272,17 @@ footer.container {
 	color: white;
 	font-weight: bold;
 	font-size: 17px;
-	border-width: 0px;
-	border-radius: 20px;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 8px;
 	text-decoration: none;
 }
 
 .btn-form:hover {
-	background-color: #025C8D90;
-	color: white;
+	background-color: #fff;
+	border-color: #025C8D;
+	box-shadow: 0px 0px 5px #025C8D90;
+	color: #025C8D;
 	transition: all 0.3s ease 0s;
 	cursor: pointer;
 }
@@ -348,8 +359,38 @@ footer.container {
 	text-align: center;
 }*/
 
+.card {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #9a9a9a90;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px #025C8D10;
+	padding: 5px;
+	margin: 5px;
+	transition: all 0.3s ease 0s;
+}
 
-.home__img {
+.card:hover {
+	box-shadow: 0px 0px 15px #025C8D50;
+	transition: all 0.3s ease 0s;
+}
+
+.card > .head {
+	background-color: #f9f9f9;
+	padding: 5px
+}
+
+.card > .body {
+	padding: 5px;
+}
+
+.card > .body > img {
+	width: 100%;
+	height: auto;
+	border-radius: 5px;
+}
+
+/*.home__img {
 	height: 200px;
 	background-color: #fff;
 	border-radius: 10px;
@@ -394,7 +435,7 @@ footer.container {
 
 .home__title > .home__desc:nth-child(even) {
 	text-align: left;
-}
+}*/
 
 /*END HOME PAGE CSS*/
 /*BEGIN RESUME PAGE CSS*/
@@ -653,7 +694,7 @@ footer.container {
 .section.project {
 	padding: 0;
 	margin: 10px auto;
-	grid-template-rows: auto 60% auto;
+	grid-template-rows: auto 50% auto;
 }
 
 .project {
@@ -668,19 +709,19 @@ footer.container {
 	grid-column: span 4;
 }
 
-
 .project:hover {
 	background-color: #0288d110;
 	transition: all .3s ease 0s;
 }
 
-.coa {background-image: url("../images/coa_proj.png");}
+/*.coa {background-image: url("../images/coa_proj.png");}
 .sg {background-image: url("../images/sg_proj.png");}
 .pwm {background-image: url("../images/pwm_proj.png");}
 .scrape {background-image: url("../images/scrape_proj.png");}
 .auto {background-image: url("../images/automate_proj.png");}
 .hdis {background-image: url("../images/hdis_proj.png");}
-
+.nhl {background-image: url("../images/nhl_proj.png");}
+.placeholder {background-image: url("../images/placeholder.png");}*/
 
 .item__name, .item__description {
 	visibility: hidden;
@@ -692,13 +733,13 @@ footer.container {
 
 .item__name {
 	text-align: center;
-	height: auto;
 	grid-row: span 1;
 	padding-top: 5px;
 }
 
 .item__description {
 	grid-row: 3 / span 1;
+	height: auto;
 } 
 
 .project:hover .item__name {
@@ -754,25 +795,6 @@ footer.container {
 	margin: 25px;
 	padding: 0;
 }
-
-.item__name, .item__description {
-	visibility: hidden;
-	border-radius: 25px;
-	background-color: #00000000;
-	color: #00000000;
-	transition: all 1.5s ease 0s;
-}
-
-.item__name {
-	text-align: center;
-	height: auto;
-	grid-row: span 1;
-	padding-top: 5px;
-}
-
-.item__description {
-	grid-row: 3 / span 1;
-} 
 
 .hobby:hover .item__name {
 	visibility: visible;
@@ -846,6 +868,15 @@ input[type=text]:hover, input[type=password]:hover, textarea:hover, select:hover
     border-color: black;
 }
 
+input[type=file] {
+	border-style: none;
+	margin: 0;
+	padding: 0;
+	border-width: 0;
+	border-radius: 0;
+	box-sizing: initial;
+}
+
 img.headshot {
 	grid-column: 11 / 13;
 	grid-row: 1 / span 2;
@@ -855,6 +886,7 @@ img.headshot {
 	min-height: 125px;
 	min-width: 87px;
 }
+
 
 
 /*ADMIN SPECIFIC CSS*/
@@ -885,7 +917,6 @@ table, th, td {
 	font-size: 16px;
 	border-radius: 10px;
 	text-decoration: none;
-	transition: all .7s ease 0s;
 }
 
 .admin__btn:hover {
@@ -910,8 +941,40 @@ nav a.nav-contact.logout:hover {
 	color: #000;
 }
 
+tr:hover {
+	background-color: #0288d115;
+	transition: all .3s ease 0s;
+} tr {transition: all .7s ease 0s;}
+
 .admin__login {
 	min-height: 69.7vh;
+}
+
+.btn.admin {
+	width: 95%;
+	height: 100px
+}
+
+.admin.section {
+	padding: 0 5%;
+}
+
+input.file {
+	border-style: none;
+}
+
+form.file {
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 10px;
+}
+
+form.file > div > input.btn-form {
+	width: 90%;
+	height: 90%;
+	background-color: grey;
+	padding: 0;
+	margin: 0;
 }
 
 /*THANK YOU CALLOUT*/
@@ -938,7 +1001,7 @@ nav a.nav-contact.logout:hover {
 	}
 }
 
-@media only screen and (max-width: 965px) {
+@media only screen and (max-width: 1024px) {
 	nav a.nav-contact {
 		display: none;
 	}

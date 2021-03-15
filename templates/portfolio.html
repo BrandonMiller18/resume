@@ -4,6 +4,14 @@
 {% set active_page = "portfolio" %}
 {% block content %}
 
+<style type="text/css" media="screen">
+	{% for x in projects %}
+	.{{x.css_class}} {
+		background-image: url("static/images/{{x.filename}}");
+	}
+	{% endfor %}
+</style>
+
 	<div class="page-header">
 		<h1 class="page-title">Portfolio!</h1>
 	</div>
