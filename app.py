@@ -492,18 +492,19 @@ def upload_image():
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
+            flash('No file part', 'error')
+            return redirect(request.referrer)
         file = request.files['file']
         # if user does not select file, browser also
         # submit an empty part without filename
         if file.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
+            flash('No selected file', 'error')
+            return redirect(request.referrer)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(request.url)
+            flash('File uploaded!', 'success')
+            return redirect(request.referrer)
     else:
     	return render_template("admin/upload_image.html")
 
@@ -527,7 +528,7 @@ def admin_hobby():
 			hobby_desc,
 			active,
 			)
-		
+
 		db.session.add(hobby)
 		db.session.commit()
 
