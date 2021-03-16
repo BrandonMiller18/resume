@@ -26,16 +26,30 @@
 					<option value="Hobby">Hobby</option>
 				</select>
 			</div>
-			<div class="full-width">
+			<div class="half-width">
 				<label for="class">CSS Class: </label>
 				<input id="class" type="text" name="class" required>
 			</div>
-			<div class="full-width">
+			<div class="half-width lname">
+				<label for="filename">Filename: </label>
+				<input id="filename" type="text" name="filename">
+			</div>
+			<div class="full-width fname">
 				<label for="hobby_desc">Hobby Description: </label>
 				<textarea id="hobby_desc" class="msg" type="text" name="hobby_desc" required></textarea>
 			</div>
 			<div class="full-width center">
 				<input class="btn-form" type="submit" name="submit" value="Submit">
+			</div>
+		</form>
+
+		<form class="section" action="{{ url_for('upload_image') }}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+			<h2 class="full-width center pad">Upload an Image</h2>
+			<div class="full-width center mauto">
+				<input class="file" type="file" id="file" name="file">	
+			</div>
+			<div class="full-width center">
+				<input class="full-width btn-form" type="submit" name="Upload Image">
 			</div>
 		</form>
 	</div>
@@ -50,6 +64,7 @@
 					<th>Cateogry</th>
 					<th>Hobby Description</th>
 					<th>CSS Class</th>
+					<th>Filename</th>
 					<th>Active?</th>
 				</tr>
 			</thead>
@@ -61,6 +76,7 @@
 					<td>{{x.category}}</td>
 					<td>{{x.hobby_desc}}</td>
 					<td>{{x.css_class}}</td>
+					<td>{{x.filename}}</td>
 					<td>{{x.active}}</td>
 					<td class="no_border center"><a href="{{ url_for('enable_hobby', hobby_id=x._id) }}"><button class="admin__btn"><i class="fa fa-check" aria-hidden="true"></i></button></a></td>
 					<td class="no_border center"><a href="{{ url_for('disable_hobby', hobby_id=x._id) }}"><button class="admin__btn"><i class="fa fa-minus-square" aria-hidden="true"></i></button></a></td>

@@ -101,13 +101,15 @@ class hobby_table(db.Model):
 	hobby_title = db.Column(db.String(100))
 	category = db.Column(db.String(100))
 	css_class = db.Column(db.String(100))
+	filename = db.Column(db.String(100))
 	hobby_desc = db.Column(db.Text)
 	active = db.Column(db.Boolean)
 
-	def __init__(self, hobby_title, category, css_class, hobby_desc, active):
+	def __init__(self, hobby_title, category, css_class, filename, hobby_desc, active):
 		self.hobby_title = hobby_title
 		self.category = category
 		self.css_class = css_class
+		self.filename = filename
 		self.hobby_desc = hobby_desc
 		self.active = active
 
@@ -115,6 +117,7 @@ class hobby_table(db.Model):
 		return '<portfolio %r>' % self.hobby_title,
 		self.category,
 		self.css_class,
+		self.filename,
 		self.hobby_desc,
 		self.active
 
@@ -512,11 +515,19 @@ def admin_hobby():
 		hobby_title = request.form["hobby_title"]
 		category = request.form["category"]
 		css_class = request.form["class"]
+		filename = request.form["filename"]
 		hobby_desc = request.form["hobby_desc"]
 		active = False
 
 		# write data to hobby database
-		hobby = hobby_table(hobby_title, category, css_class, hobby_desc, active)
+		hobby = hobby_table(hobby_title,
+			category,
+			css_class,
+			filename,
+			hobby_desc,
+			active,
+			)
+		
 		db.session.add(hobby)
 		db.session.commit()
 
