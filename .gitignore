@@ -10,3 +10,6 @@ heroku_db.py
 
 __pycache__
 venv
+
+# upload images directly on prod admin
+static/images
