@@ -699,10 +699,10 @@ footer.container {
 
 .project {
 	background-color: #0288d120;
-	box-shadow: 0px 0px 15px #025C8D10;
+	box-shadow: 0px 0px 1em #025C8D20;
 	height: 400px;
 	width: 400px;
-	border-radius: 25px;
+	border-radius: 8px;
 	transition: all .7s ease 0s;
 	border-width: 0.5px;
 	border-color: #c7c4c4;
@@ -712,7 +712,7 @@ footer.container {
 
 .project:hover {
 	background-color: #0288d110;
-	box-shadow: 0px 0px 15px #025C8D50;
+	box-shadow: 0px 0px 1.5em #025C8D50;
 	transition: all .5s ease 0s;
 }
 
@@ -727,7 +727,7 @@ footer.container {
 
 .item__name, .item__description {
 	visibility: hidden;
-	border-radius: 25px;
+	border-radius: 8px;
 	background-color: #00000000;
 	color: #00000000;
 	transition: all 1.5s ease 0s;
@@ -746,7 +746,7 @@ footer.container {
 
 .project:hover .item__name {
 	visibility: visible;
-	border-radius: 25px 25px 0 0;
+	border-radius: 8px 8px 0 0;
 	background-color: #00000080;
 	color: #ffffff;
 	text-align: center;
@@ -758,7 +758,7 @@ footer.container {
 
 .project:hover .item__description {
 	visibility: visible;
-	border-radius: 0 0 25px 25px;
+	border-radius: 0 0 8px 8px;
 	grid-row: 3 / span 1;
 	background-color: #00000080;
 	color: #ffffff;
@@ -786,11 +786,11 @@ footer.container {
 
 .hobby {
 	background-color: #0288d120;
-	box-shadow: 0px 0px 15px #025C8D10;
+	box-shadow: 0px 0px 1em #025C8D25;
 	grid-column: span 6;
 	height: 250px;
 	width: auto;
-	border-radius: 25px;
+	border-radius: 8px;
 	transition: all .7s ease 0s;
 	border-width: 0.5px;
 	border-color: #c7c4c4;
@@ -800,12 +800,12 @@ footer.container {
 }
 
 .hobby:hover {
-	box-shadow: 0px 0px 15px #025C8D50;
+	box-shadow: 0px 0px 1.5em #025C8D55;
 }
 
 .hobby:hover .item__name {
 	visibility: visible;
-	border-radius: 25px 25px 0 0;
+	border-radius: 8px 8px 0 0;
 	background-color: #00000080;
 	color: #ffffff;
 	text-align: center;
@@ -817,7 +817,7 @@ footer.container {
 
 .hobby:hover .item__description {
 	visibility: visible;
-	border-radius: 0 0 25px 25px;
+	border-radius: 0 0 8px 8px;
 	grid-row: 3 / span 1;
 	background-color: #00000080;
 	color: #ffffff;
