@@ -270,7 +270,7 @@ footer.container {
 	border-width: 2px;
 	font-weight: bold;
 	font-size: 17px;
-	border-radius: 8px;
+	border-radius: 5px;
 	text-decoration: none;
 	transition: all .7s ease 0s;
 }
@@ -340,17 +340,6 @@ footer.container {
 	grid-column: span 8;
 }
 
-.resume-head {
-	grid-column: span 12;
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-	padding: 20px 15% 10px 15%;
-	position: sticky;
-	top: 50px;
-	background-color: #f9f9f9;
-	box-shadow: 0 0.25em 2em #99999940;
-	z-index: 2;
-}
 
 .head-break {
 	grid-column: span 12;
@@ -459,6 +448,18 @@ footer.container {
 
 /*END HOME PAGE CSS*/
 /*BEGIN RESUME PAGE CSS*/
+
+.resume-head {
+	grid-column: span 12;
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	padding: 20px 15% 10px 15%;
+	position: sticky;
+	top: 58px;
+	background-color: #f9f9f9;
+	box-shadow: 0 0.25em 2em #99999940;
+	z-index: 2;
+}
 
 .resume-title {
 	/*name on resume.html*/
@@ -911,7 +912,7 @@ img.headshot {
 	grid-row: 1 / span 2;
 	width: 150px;
 	height: 150px;
-	border-radius: 8px;
+	border-radius: 5px;
 	min-height: 125px;
 	min-width: 87px;
 }
@@ -944,7 +945,7 @@ table, th, td {
 	color: white;
 	border-width: 0px;
 	font-size: 16px;
-	border-radius: 10px;
+	border-radius: 5px;
 	text-decoration: none;
 }
 
