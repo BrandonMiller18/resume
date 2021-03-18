@@ -14,7 +14,7 @@
 		{% for x in projects %}
 		{% if x.active == True %}
 		{% if x.proj_title != "More to Come..." %}
-		<div class="half-width section reference">
+		<div class="half-width section reference card">
 			<h2 class="full-width">{{x.proj_title}}</h2>
 			<p class="full-width">{{x.proj_long_desc|safe}}</p>
 			{% if x.download_path %}
