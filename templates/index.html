@@ -12,16 +12,6 @@
 	{% endif %}
 </div>
 
-<!-- <div class="hero">
-	<div class="section narrow pad hero__text">
-		<div class="full-width pad">
-			<p>Welcome to what is probably the millionth iteration of my resume website. If you are reading this, it means I have finally gotten this bad boy to a place where I am happy enough to launch it (I've only owned the domain for over a year...)! Jokes aside, I started this project with one goal: LEARN. Spoiler alert: I have learned a lot!</p>
-			<p>This site is built using the Python web-framework, Flask. I use the SQLAlchemy API to store and retrieve data from an SQLite database. All the HTML and CSS is completely custom (no bootstrap). Ok, maybe not completely custom - any sane person knows that Reddit and Stack Overflow are necessary for any project.</p>
-			<p>The site you are viewing now is not a final product, and likely never will be. This is where I learn and experiment. This is my professional classroom. Take a look around...</p>
-		</div>
-	</div>
-</div> -->
-
 <div class="container">
 	<div class="section narrow pad">
 		<div class="third-width card">
@@ -29,9 +19,9 @@
 				<h2>About Me</h2>
 			</div>
 			<div class="full-width body">
-				<img src="{{url_for('static', filename='images/me.jpg')}}">
+				<img src="{{url_for('static', filename='images/me.jpg')}}" alt="Brandon Miller headshot">
 				<p>My name is Brandon Miller. I currently work as an Ecommerce Manager at HDIS. I was born in Hazelwood, MO and went to college at Lindenwood University.</p>
-				<p>I built this site using the Python Flask webframework and a PostreSQL database. Look around, leave a reference, send me an email.</p>
+				<p>I built this site using the Python Flask web framework and a PostreSQL database. Look around, leave a reference, send me an email.</p>
 			</div>
 		</div>
 		<div class="third-width card">
@@ -39,7 +29,7 @@
 				<h2>NHL Companion</h2>
 			</div>
 			<div class="full-width body">
-				<img src="{{url_for('static', filename='images/hockey.jpg')}}">
+				<img src="{{url_for('static', filename='images/hockey.jpg')}}" alt="Ice Hockey Net">
 				<p>The NHL Companion is a site I built which allows you to follow your favorite NHL team's game. The app plays your team's goal horn when your team scores. </p>
 				<p>It uses the NHL's public API to retrieve data and is built using Flask as the framework and SocketIO to manage the communication from server to client. The code is available on my GitHub.</p>
 				<p><a href="http://www.nhlcompanion.com/" target="_blank" title="NHL Companion">Try it now!</a></p>
@@ -50,7 +40,7 @@
 				<h2>Sofia & Grace</h2>
 			</div>
 			<div class="full-width body">
-				<img src="{{url_for('static', filename='images/sg_proj.png')}}">
+				<img src="{{url_for('static', filename='images/sg_proj.png')}}" alt="screenshot of website">
 				<p>Sofia & Grace is a Magento 2 ecommerce store that I led the development of. The site launched in Q1 2021. The site and brand is focused on destimgatizing urinary incontinence while empowering women to live fuller, healthier lives.</p>
 				<p>The site has many features such as a Perfect Product Quiz, special trial and subscription offers, and much more!</p>
 				<p><a href="https://www.sofiaandgrace.com" target="_blank" title="Sofia & Grace">Check it out!</a></p>
@@ -77,40 +67,6 @@
 			</a>
 		</div>
 	</div>
-
-	<!-- <hr style="width: 75%;">
-	
-	{% if references %}
-	<h2 class="full-width pad center">Real References</h2>
-	<p class="full-width pad narrow center">References are stored in a Postgres SQL database. Please consider leaving a reference below.</p>
-	<div class="section references pad">
-		
-
-		{% for x in references %}
-		{% if x.approved == True %}
-
-			<div class="reference container full-width">
-				<p class="full-width"><strong>{{x.fname}} {{x.lname}}</strong></p>
-				<p class="half-width">{{x.title}}</p>
-				<p class="half-width">{{x.relationship}}</p>
-				<p class="full-width msg">{{x.msg}}</p>
-			</div>
-			
-		{% endif %}
-		{% endfor %}
-
-	</div>
-	{% else %}
-	<h2 class="full-width pad center">No References Yet</h2>
-	<p class="full-width pad narrow center">Please consider leaving a reference below!</p>
-	{% endif %}
-
-
-	<div class="section narrow pad center">
-		<a class="full-width pad" href="/references" title="Leave a Reference">
-			<button class="btn">Leave a Reference</button>
-		</a>
-	</div> -->
 
 </div>
 

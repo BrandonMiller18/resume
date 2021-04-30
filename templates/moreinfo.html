@@ -16,10 +16,12 @@
 		{% if x.active == True %}
 		{% if x.proj_title != "More to Come..." %}
 		<div class="half-width section reference card">
-			<h2 class="full-width">{{x.proj_title}}</h2>
-			<p class="full-width body">{{x.proj_long_desc|safe}}</p>
+			<h2 class="full-width pad">{{x.proj_title}}</h2>
+			<div class="full-width body">{{x.proj_long_desc|safe}}</div>
 			{% if x.download_path %}
-			<a class="full-width" href="{{x.download_path}}"><button class="btn btn__download"><i class="fa fa-download" aria-hidden="true"></i></button></a>
+			<div class="full-width">
+				<a href="{{x.download_path}}" class="btn btn__download center pad" aria-label="download {{ x.proj_title }}"><i class="fa fa-download" aria-hidden="true"></i></a>
+			</div>
 			{% endif %}
 		</div>
 		{% endif %}
