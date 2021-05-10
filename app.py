@@ -1,6 +1,6 @@
 import os
 import smtplib
-from flask import Flask, redirect, url_for, render_template, send_file, request, session, make_response, flash
+from flask import Flask, redirect, url_for, render_template, send_file, request, session, make_response, flash, send_from_directory
 from flask_login import LoginManager, UserMixin, login_user, login_required, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
 from sendgrid import SendGridAPIClient
@@ -122,6 +122,13 @@ class hobby_table(db.Model):
 		self.active
 
 db.create_all()
+
+# sitemap and robots.txt
+@app.route('/robots.txt')
+@app.route('/sitemap.xml')
+def static_from_root():
+    return send_from_directory(app.static_folder, request.path[1:])
+
 
 # create pages
 
