@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /logout
+Disallow: /admin/*
+Disallow: /admin
+Disallow: /thankyou
+Disallow: /brandon_miller_resume/
+Disallow: /directmail-kit/
+Disallow: /automation_example/
+Disallow: /pwm-download/
+Disallow: /success
