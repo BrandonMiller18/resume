@@ -45,7 +45,7 @@ class references(db.Model):
 	title = db.Column(db.String(100))
 	email = db.Column(db.String(100))
 	relationship = db.Column(db.String(100))
-	msg = db.Column(db.String(255))
+	msg = db.Column(db.text)
 	approved = db.Column(db.Boolean)
 
 	def __init__(self, fname, lname, title, email, relationship, msg, approved):
